@@ -1,0 +1,25 @@
+- defaults:
+      link:
+          relink: true
+          create: true
+
+- clean: ['~']
+
+- clean:
+      ~/:
+          force: true
+      ~/.config:
+          recursive: true
+
+- link:
+      ~/.zshenv: zsh/zshenv
+      ~/.config/zsh/.zshrc: zsh/zshrc
+      ~/.config/zsh/.zprofile: zsh/zprofile
+      ~/.config/zsh/lib/aliases.zsh: zsh/lib/aliases.zsh
+      ~/.config/zsh/lib/completion.zsh: zsh/lib/completion.zsh
+      ~/.config/zsh/lib/history.zsh: zsh/lib/history.zsh
+      ~/.config/zsh/lib/keybindings.zsh: zsh/lib/keybindings.zsh
+      ~/.config/zsh/lib/plugins.zsh: zsh/lib/plugins.zsh
+
+- shell:
+      - [git submodule update --init --recursive, Installing submodules]

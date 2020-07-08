@@ -1,0 +1,62 @@
+############
+### .zshenv
+############
+
+### Locale
+export LANG=en_IE.UTF-8
+export LC_ALL=$LANG
+
+### XDG
+export XDG_CURRENT_DESKTOP=Unity
+export XDG_BIN_HOME=$HOME/.local/bin
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_LIB_HOME=$HOME/.local/lib
+xdg-user-dirs-update
+
+### Zsh
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export ZLIB=$ZDOTDIR/lib
+
+### Defaults
+export DIFF='/usr/bin/nvim -d'
+export EDITOR=/usr/bin/nvim
+export GIT_EDITOR=/usr/bin/nvim
+export INFODIR="/usr/share/info:/usr/local/share/info"
+export PAGER=/usr/bin/less
+export LESS="-g -i -M -R -S -W -z-4 -x4"
+export MANPAGER=/usr/bin/less
+export SUDO_EDITOR=/usr/bin/nvim
+export TZ=/usr/share/zoneinfo/Europe/Berlin
+export VISUAL=/usr/bin/nvim
+
+### Programs
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export CCACHE=$XDG_CACHE_HOME/ccache
+export GEM_HOME=$XDG_DATA_HOME/gem/ruby/2.6.0
+export GEM_PATH=$XDG_DATA_HOME/gem/ruby/2.6.0
+export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
+export GOPATH=$XDG_DATA_HOME/go
+export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
+export LESSHISTFILE=$XDG_DATA_HOME/less/history
+export MYSQL_HISTFILE=$XDG_CACHE_HOME/mysql.history
+export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
+export NPM_PACKAGES=$XDG_DATA_HOME/npm
+export PYLINTHOME=$XDG_DATA_HOME/pylint
+export PYLINTRC=$XDG_CONFIG_HOME/pylint/pylintrc
+export PYTHONDONTWRITEBYTECODE=1
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc.py
+export XBPS_DISTDIR="$HOME/science/linux/void/void-packages"
+export YARN_CACHE_FOLDER=$XDG_CACHE_HOME/yarn
+export _Z_DATA=$XDG_DATA_HOME/z/data
+
+### PATH
+typeset -U path
+path=($XDG_BIN_HOME $XDG_BIN_HOME/private $CARGO_HOME/bin $NPM_PACKAGES/bin $GEM_PATH/bin  $path[@])
+
+### Keyring
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
