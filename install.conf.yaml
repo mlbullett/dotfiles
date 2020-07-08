@@ -3,13 +3,7 @@
           relink: true
           create: true
 
-- clean: ['~']
-
-- clean:
-      ~/:
-          force: true
-      ~/.config:
-          recursive: true
+- clean: ['~', '~/.config']
 
 - link:
       ~/.zshenv: zsh/zshenv
