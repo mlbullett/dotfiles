@@ -1,20 +1,20 @@
 # Dotfiles
 
-My dotfiles, managed with [dotbot](https://github.com/anishathalye/dotbot/)
+My dotfiles, managed with [dotbot](https://github.com/anishathalye/dotbot/).
 
-## Dependencies
+## Contents
 
-Install using the relevant package manager or straight from source.
+These dotfiles contain the following :
 
--   git
--   zsh
+-   zsh with [zinit](https://github.com/zdharma/zinit)
 
 ## Usage
 
-1. Fork nad clone this repo
-2. Run `./install` to automatically set up environment (idempotent so can safely be run multiple times).
+1. Fork and/or clone this repo.
+2. Run `./install` to automatically set up all configs or specify specific programs to only configure them (i.e `./install zsh`). The script is idempotent meaning it can safely be run multiple times.
 
 ## Configuration
 
--   You can customize programs directly in the eponymous folders
--   Don't forget to update [install.conf.yaml](install.conf.yaml) accordingly when adding new customizations
+-   You can edit the configs directly in the eponymous folders.
+-   To add new files to an existing config remember to edit the relevant yaml in the [meta/configs](meta/configs) file.
+-   When adding a program, create a new folder in [configs](configs) and new yaml in [meta/configs](meta/configs).
