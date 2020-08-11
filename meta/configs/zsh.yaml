@@ -1,7 +1,6 @@
 - link:
       ~/.zshenv: configs/zsh/zshenv
       ~/.config/zsh/.zshrc: configs/zsh/zshrc
-      ~/.config/zsh/.zprofile: configs/zsh/zprofile
       ~/.config/zsh/lib/aliases.zsh: configs/zsh/lib/aliases.zsh
       ~/.config/zsh/lib/completion.zsh: configs/zsh/lib/completion.zsh
       ~/.config/zsh/lib/history.zsh: configs/zsh/lib/history.zsh

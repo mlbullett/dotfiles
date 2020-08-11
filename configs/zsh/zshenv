@@ -20,11 +20,15 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZLIB=$ZDOTDIR/lib
 
 ### Defaults
+export BROWSER=/usr/bin/brave
 export DIFF='/usr/bin/nvim -d'
 export EDITOR=/usr/bin/nvim
+export GAMEMODERUNEXEC="env __NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia"
 export GIT_EDITOR=/usr/bin/nvim
+export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0
 export INFODIR="/usr/share/info:/usr/local/share/info"
 export PAGER=/usr/bin/less
+export QT_QPA_PLATFORMTHEME=gtk2
 export LESS="-g -i -M -R -S -W -z-4 -x4"
 export MANPAGER=/usr/bin/less
 export SUDO_EDITOR=/usr/bin/nvim

@@ -19,6 +19,14 @@ fi
 source "$HOME/.config/zsh/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-bin-gem-node
+
 ##########################################################
 ### End of zinit block
 ##########################################################
@@ -26,38 +34,25 @@ autoload -Uz _zinit
 ### Colours
 (cat ~/.cache/wal/sequences &)
 
-### Functions
-zt()  { zinit depth'3' lucid ${1/#[0-9][a-c]/wait"$1"} "${@:2}"; }
-zct() { .zinit-ice load"[[ \${MYPROMPT} = ${1} ]]" unload"[[ \${MYPROMPT} != ${1} ]]" \
-        atinit'![ -f "${thmf}/${MYPROMPT}-pre" ] && source "${thmf}/${MYPROMPT}-pre"' \
-        atload'![ -f "${thmf}/${MYPROMPT}-post" ] && source "${thmf}/${MYPROMPT}-post"'; \
-        ZINIT_ICE+=("${(kv)ZINIT_ICES[@]}"); ___turbo=1;}
-
 ### Prompt
 zinit light denysdovhan/spaceship-prompt
 SPACESHIP_VI_MODE_SHOW=false
 
-### Annexes
-zt light-mode compile'*handler' for \
-        zinit-zsh/z-a-patch-dl \
-        zinit-zsh/z-a-bin-gem-node \
-        zinit-zsh/z-a-submods
-
 ### Plugins
-zinit wait lucid for \
-    zsh-users/zsh-history-substring-search \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-        zdharma/fast-syntax-highlighting \
-    blockf \
-        zsh-users/zsh-completions \
-    atload"!_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions \
-    Aloxaf/fzf-tab \
-    OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh \
-    OMZ::plugins/thefuck/thefuck.plugin.zsh \
-    as"completion" \
-        OMZ::plugins/docker/_docker \
-        OMZ::plugins/docker-compose/_docker-compose
+zinit light zsh-users/zsh-history-substring-search
+
+zinit ice wait lucid for atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
+zinit light zdharma/fast-syntax-highlighting
+
+zinit ice blockf
+zinit light zsh-users/zsh-completions
+
+zinit light zsh-users/zsh-autosuggestions
+
+zinit light Aloxaf/fzf-tab
+
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit snippet OMZ::plugins/thefuck/thefuck.plugin.zsh
 
 zinit load agkozak/zsh-z
 

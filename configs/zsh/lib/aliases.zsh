@@ -56,3 +56,7 @@ alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 alias wget='wget -c'
+
+### Work
+alias daa='/home/max/work/DAA/tech/software/daa/bin/daadocker'
+alias por='/home/max/work/DAA/tech/software/portale/bin/portaldocker'
