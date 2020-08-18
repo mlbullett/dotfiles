@@ -1,0 +1,7 @@
+- link:
+      ~/.config/nvim/init.vim: configs/nvim/init.vim
+      ~/.config/nvim/config/01_plugins.vim: configs/nvim/config/01_plugins.vim
+      ~/.config/nvim/config/02_init.vim: configs/nvim/config/02_init.vim
+      ~/.config/nvim/config/03_airline.vim: configs/nvim/config/03_airline.vim
+      ~/.config/nvim/config/04_mappings.vim: configs/nvim/config/04_mappings.vim
+      ~/.config/nvim/config/05_functions.vim: configs/nvim/config/05_functions.vim

@@ -6,8 +6,9 @@ My dotfiles, managed with [dotbot](https://github.com/anishathalye/dotbot/).
 
 These dotfiles contain the following :
 
--   zsh with [zinit](https://github.com/zdharma/zinit)
 -   [kitty](https://github.com/kovidgoyal/kitty)
+-   [nvim](https://github.com/neovim/neovim) using [vimplug](https://github.com/junegunn/vim-plug)
+-   zsh using [zinit](https://github.com/zdharma/zinit)
 
 ## Usage
 
