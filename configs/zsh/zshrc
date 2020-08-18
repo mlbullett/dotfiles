@@ -38,22 +38,39 @@ zinit light-mode for \
 zinit light denysdovhan/spaceship-prompt
 SPACESHIP_VI_MODE_SHOW=false
 
-### Plugins
-zinit light zsh-users/zsh-history-substring-search
-
-zinit ice wait lucid for atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
-zinit light zdharma/fast-syntax-highlighting
-
-zinit ice blockf
-zinit light zsh-users/zsh-completions
-
-zinit light zsh-users/zsh-autosuggestions
-
-zinit light Aloxaf/fzf-tab
-
+### OMZ
+zinit ice wait lucid
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
+zinit ice wait lucid
+zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
+
+zinit ice wait lucid
 zinit snippet OMZ::plugins/thefuck/thefuck.plugin.zsh
 
+zinit ice wait lucid as'completion' blockf
+zinit snippet OMZ::plugins/ripgrep/_ripgrep
+
+### Plugins
+zinit ice depth=1 lucid
+zinit light trystan2k/zsh-tab-title
+
+zinit ice depth=1 wait lucid
+zinit light Aloxaf/fzf-tab
+
+zinit ice depth=1 wait blockf lucid atpull"zinit creinstall -q ."
+zinit light clarketm/zsh-completions
+
+zinit ice depth=1 wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
+zinit light zdharma/fast-syntax-highlighting
+
+zinit ice depth=1 wait lucid compile"{src/*.zsh,src/strategies/*.zsh}" atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice depth=1 wait lucid atload"bindkey '$terminfo[kcuu1]' history-substring-search-up; bindkey '$terminfo[kcud1]' history-substring-search-down"
+zinit light zsh-users/zsh-history-substring-search
+
+zinit ice depth=1 lucid
 zinit load agkozak/zsh-z
 
 ### Packages
