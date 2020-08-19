@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+
+### Pip package querying script
+
+import operator
+import subprocess
+import sys
+
+import pkg_resources
+try:
+    from pip._internal.commands.list import tabulate
+except ImportError:
+    from pip.commands.list import tabulate
+
+
+def query(file):
+    proc = subprocess.Popen(['pacman', '-Qqo', file], stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE, universal_newlines=True)
+    out, err = proc.communicate()
+    return out.strip()
+
+
+def main():
+    packages = sorted(pkg_resources.WorkingSet(), key=operator.attrgetter('project_name'))
+    if not packages:
+        return 0
+    data = [(pkg.project_name, pkg.version, query(pkg.egg_info or pkg.path), ) for pkg in packages]
+    data.insert(0, ('Package', 'Version', 'Owner', ))
+    rows, sizes = tabulate(data)
+    rows.insert(1, ' '.join(map(lambda x: '-' * x, sizes)))
+    for row in rows:
+        print(row)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

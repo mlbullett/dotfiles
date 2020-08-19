@@ -1,0 +1,96 @@
+#!/bin/bash
+
+### Backup script using borg and rclone for deduplicated and encrypted local and remote backups
+### Pairs nicely with cronjob or systemd timer+service
+
+# Variables
+export BORG_REPO="$HOME/archive/borg"
+export BORG_PASSPHRASE=$(cat $HOME/archive/.key)
+RCLONE_REPO="google:backup"
+BACKUP_NAME="::$(hostname)-$(date '+%Y-%m-%d_%H:%M')"
+export BORG_FILES_CACHE_TTL=20
+
+# Check if already running
+if pidof -x borg >/dev/null; then
+    echo "Borg is already running"
+    exit
+fi
+
+if pidof -x rclone >/dev/null; then
+    echo "Rclone is already running"
+    exit
+fi
+
+# Borg backup
+echo "Starting backup"
+
+borg create                     \
+    -s                          \
+    --filter AME                \
+    --show-rc                   \
+    --compression zlib          \
+    --exclude-caches            \
+    "$BACKUP_NAME"              \
+    ~/books             \
+    ~/.config           \
+    ~/dotfiles          \
+    ~/docs              \
+    ~/music             \
+    ~/pics              \
+    ~/science           \
+    ~/vids              \
+    ~/work              \
+    $XDG_BIN_HOME               \
+    --exclude ~/work/DAA/tech/software \
+    --exclude ~/science/linux/flatpak \
+    2>&1
+
+backup_exit=$?
+
+# Borg pruning
+echo "Pruning repository"
+
+borg prune                      \
+    -s                          \
+    --show-rc                   \
+    --prefix "$(hostname)-"     \
+    --keep-daily    7           \
+    --keep-weekly   4           \
+    --keep-monthly  6           \
+    2>&1
+
+prune_exit=$?
+
+global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
+
+if [ ${global_exit} -eq 0 ]; then
+    echo "Backup and Prune finished successfully"
+
+    # Rclone sync
+    echo "Starting Rclone sync"
+
+    rclone sync $BORG_REPO $RCLONE_REPO 2>&1
+
+    if [ $? -ne 0 ]; then
+        echo "Something went wrong running rclone sync!"
+        exit $?
+    else
+        echo "Rclone sync completed successfully"
+    fi
+
+    # Rclone cleanup
+    rclone cleanup $RCLONE_REPO 2>&1
+
+    if [ $? -ne 0 ]; then
+        echo "Something went wrong running rclone cleanup!"
+    else
+        echo "Rclone cleanup completed successfully"
+    fi
+
+elif [ ${global_exit} -eq 1 ]; then
+    echo "Backup and/or Prune finished with warnings"
+else
+    echo "Backup and/or Prune finished with errors"
+fi
+
+exit ${global_exit}

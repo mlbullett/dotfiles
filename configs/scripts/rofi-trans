@@ -1,0 +1,11 @@
+#!/bin/bash
+
+### Rofi translation module (wayland)
+
+target=$(rofi -dmenu -p "Target language")
+[[ -z $target  ]] && target="en"
+input=$(rofi -dmenu -p "Text to translate")
+[[ -z $target  ]] && exit
+output=$(trans -b -t $target "$input")
+wl-copy $output
+rofi -e "$output"

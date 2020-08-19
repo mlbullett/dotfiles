@@ -1,0 +1,36 @@
+#!/bin/bash
+
+### Volume key handling
+### Depends on pamixer and pactl
+
+notify() {
+  volume=$(pamixer --get-volume)
+  bar=$(seq -s "●" $(( ($volume + 10) / 10 )) | sed 's/[0-9]//g')
+  barempty=$(seq -s "○" $(( (110 - $volume) / 10)) | sed 's/[0-9]//g')
+
+  paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+  if [[ $(pamixer --get-mute) == true ]]; then
+    if [[ $volume -lt 10 ]]; then
+      notify-send -u low -a $volume -i audio-volume-muted-symbolic.symbolic "○○○○○○○○○○"
+    fi
+  elif [[ $volume -gt 50 ]]; then
+    notify-send -u low -a $volume -i audio-volume-high-symbolic.symbolic "$bar$barempty"
+  elif [[ $volume -lt 10 ]]; then
+      notify-send -u low -a $volume -i audio-volume-muted-symbolic.symbolic "○○○○○○○○○○"
+  else
+    notify-send -u low -a $volume -i audio-volume-low-symbolic.symbolic "$bar$barempty"
+  fi
+}
+
+if [ $# -eq 2 ] && [ $2 -eq $2 ]; then
+  pactl set-sink-mute @DEFAULT_SINK@ 0
+  if [ $1 == up ]; then
+      amixer sset Master $2%+
+  elif [ $1 == down ]; then
+      amixer sset Master $2%-
+  fi
+  notify
+elif [ $1 == mute ]; then
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+  notify
+fi

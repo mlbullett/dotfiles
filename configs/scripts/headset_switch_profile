@@ -1,0 +1,30 @@
+#!/bin/bash
+
+### Switcher for bluetooth headset profile between high quality audio (A2DP) and input/output (HSP/HFP)
+
+pacmd list-sinks | grep -q "bluez"
+if [ $? -eq 0 ]; then
+    current=$(pacmd list-sinks | grep -e 'bluez_sink' | sed 's/.*\.//;s/\>.*//')
+    case $current in
+        a2dp_sink)
+            pacmd set-card-profile bluez_card.4C_87_5D_28_56_A6 headset_head_unit
+            notify-send -a "pacmd" "Switched to HSP/HFP"
+            exit 0
+        ;;
+        headset_head_unit)
+            pacmd set-card-profile bluez_card.4C_87_5D_28_56_A6 a2dp_sink
+            notify-send -a "pacmd" "Switched to A2DP"
+            exit 0
+        ;;
+        *)
+            notify-send -a "pacmd" -u "critical" "Profile not recognized"
+            exit 0
+        ;;
+    esac
+else
+    notify-send -a "pacmd" "Connecting to Morpheus..."
+    bluetoothctl connect 4C:87:5D:28:56:A6
+    exit 0
+fi
+notify-send -a "pacmd" -u "critical" "Bluetooth headset not detected"
+exit 1

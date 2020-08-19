@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+### Dynamic themeing script using wal and wpg
+
+# Check for wallpaper or open selector
+if [[ -f $1 ]]; then
+    WALL=$1
+else
+    # Open selector for image
+    WALL=$(zenity --file-selection --file-filter='Images (png/jpg) | *.png *.jpg' --title "Pick a wallpaper")
+fi
+
+# Run wal and source resulting colors
+wpg -a $WALL && wpg -rs $(basename $WALL) -n
+nitrogen --set-zoom-fill ~/.config/wpg/wallpapers/$(wpg -c)
+
+source $XDG_CACHE_HOME/wal/colors.sh

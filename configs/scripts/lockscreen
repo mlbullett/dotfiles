@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+
+### Censor bar lockscreen relying on tesseract OCR
+### Mileage may vary but impetus is on performance rather than precision
+
+import cv2
+import json
+from PIL import Image
+import numpy as np
+import os
+import subprocess
+import sys
+from tesserocr import PyTessBaseAPI, RIL
+
+def take_screenshot(output_file):
+    subprocess.call(['maim', output_file])
+    image = Image.open(output_file)
+    os.remove(output_file)
+    return image
+
+def censor(image):
+    with PyTessBaseAPI() as api:
+        #lock = Image.open('/home/max/.config/i3lock/lock.png')
+        api.SetImage(image)
+        cv_img = np.array(image)
+        boxes = api.GetComponentImages(RIL.TEXTLINE, True)
+        for (_, box, _, _) in boxes:
+            x, y, w, h = box['x'], box['y'], box['w'], box['h']
+            cv2.rectangle(cv_img, (x, y), (x + w, y + h), (0, 0, 0), -1)
+
+        image = Image.fromarray(cv_img)
+        #image.paste(lock, (int(image.size[0]/2 - lock.size[0]/2), int(image.size[1]/2 - lock.size[1]/2)), lock)
+
+        return image
+
+
+def lock():
+    locker = ['i3lock', '-ef', '--color=000000']
+    image_path = '/tmp/lockscreen.png'
+    image = take_screenshot(image_path)
+    image = censor(image)
+    image.save(image_path)
+    locker.extend(['-i', image_path])
+
+    subprocess.call(locker)
+
+
+if __name__ == '__main__':
+    lock()

@@ -9,6 +9,7 @@ These dotfiles contain the following :
 -   [kitty](https://github.com/kovidgoyal/kitty)
 -   [nvim](https://github.com/neovim/neovim) using [vimplug](https://github.com/junegunn/vim-plug)
 -   zsh using [zinit](https://github.com/zdharma/zinit)
+-   and various local [scripts](configs/scripts) that are used throughout the config and should be checked on an individual basis (installation puts them in ~/.local/bin/ which should be added to \$PATH if not already)
 
 ## Usage
 

@@ -1,0 +1,16 @@
+- link:
+      ~/.local/bin/backup: configs/scripts/backup
+      ~/.local/bin/brightness: configs/scripts/brightness
+      ~/.local/bin/extract: configs/scripts/extract
+      ~/.local/bin/floating: configs/scripts/floating
+      ~/.local/bin/headset_switch_profile: configs/scripts/headset_switch_profile
+      ~/.local/bin/lockscreen: configs/scripts/lockscreen
+      ~/.local/bin/mousewarp: configs/scripts/mousewarp
+      ~/.local/bin/pip-query: configs/scripts/pip-query
+      ~/.local/bin/rofi-trans: configs/scripts/rofi-trans
+      ~/.local/bin/screengrab: configs/scripts/screengrab
+      ~/.local/bin/switcher: configs/scripts/switcher
+      ~/.local/bin/tooltipfix: configs/scripts/tooltipfix
+      ~/.local/bin/videoglitch: configs/scripts/videoglitch
+      ~/.local/bin/volume: configs/scripts/volume
+      ~/.local/bin/walset: configs/scripts/walset

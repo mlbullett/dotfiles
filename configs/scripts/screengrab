@@ -1,0 +1,41 @@
+#!/bin/bash
+
+### Modular screen capture script
+### Offers:
+### Window capture
+### Selection box capture
+### Selection box capture to clipboard
+### Selection box to OCR to clipboard (depends on rofi and tesseract OCR)
+
+set -o nounset
+set -o errexit
+set -o pipefail
+
+imagefile="$(xdg-user-dir PICTURES)/screenshots/$(date +'%Y_%m_%d-%H:%M:%S').png"
+
+util="/usr/bin/maim --format=png --hidecursor --capturebackground --quiet"
+action="${1:-select}"
+
+case ${action} in
+    window)
+        ${util} --window $(xdotool getactivewindow 2>/dev/null) ${imagefile}
+        notify-send "Screenshot ${action} saved to ${imagefile}"
+        ;;
+    select)
+        ${util} --select --bordersize 3 --highlight --color 0.1,0.2,0.3,0.6 ${imagefile}
+        notify-send "Screenshot ${action} saved to ${imagefile}"
+        ;;
+    clipboard)
+        ${util} --select --bordersize 3 --highlight --color 0.1,0.2,0.3,0.6 | xclip -selection clipboard -t image/png
+        notify-send "Screenshot saved to ${action}"
+        ;;
+    ocr)
+        lang=$(pacman -Qqs tesseract-data | awk -F 'tesseract-data-' '{print substr($2,1,3)}' | rofi -dmenu -p 'Lang')
+        ${util} --select --bordersize 3 --highlight --color 0.1,0.2,0.3,0.6 | tesseract -l ${lang} stdin - | tr '\n' ' ' | xclip -selection clipboard
+        notify-send "Screenshot saved to ${action}"
+        ;;
+
+	*)
+		notify-send "Unknown action ${action}"
+		;;
+esac
