@@ -1,8 +1,10 @@
+- clean:
+      ~/.zshenv:
+      ~/.config/zsh:
+          recursive: true
+
 - link:
       ~/.zshenv: configs/zsh/zshenv
       ~/.config/zsh/.zshrc: configs/zsh/zshrc
-      ~/.config/zsh/lib/aliases.zsh: configs/zsh/lib/aliases.zsh
-      ~/.config/zsh/lib/completion.zsh: configs/zsh/lib/completion.zsh
-      ~/.config/zsh/lib/history.zsh: configs/zsh/lib/history.zsh
-      ~/.config/zsh/lib/keybindings.zsh: configs/zsh/lib/keybindings.zsh
-      ~/.config/zsh/lib/plugins.zsh: configs/zsh/lib/plugins.zsh
+      ~/.config/zsh/lib:
+          path: configs/zsh/lib/*

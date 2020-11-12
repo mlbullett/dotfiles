@@ -22,9 +22,5 @@ if [ $? -eq 0 ]; then
         ;;
     esac
 else
-    notify-send -a "pacmd" "Connecting to Morpheus..."
-    bluetoothctl connect 4C:87:5D:28:56:A6
-    exit 0
+    bluetooth-autoconnect
 fi
-notify-send -a "pacmd" -u "critical" "Bluetooth headset not detected"
-exit 1

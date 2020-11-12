@@ -22,7 +22,7 @@ alias ls='exa --git -F'
 alias lt='exa --git -lFhT'
 
 ### Package management & Updates
-alias up='zi self-update && zi update && sudo pacman -Syu'
+alias yup='yay -Syu'
 alias yrm='yay -Rns'
 alias yfind='yay -F'
 
@@ -47,7 +47,7 @@ alias rg='rg -SpL --hidden --no-messages'
 
 ### Shortcuts and corrections
 alias clr='clear'
-alias code='code-oss'
+alias code='code-insiders'
 alias f='tail -f'
 alias fping='ping -c 100 -s.2'
 alias pscpu='ps auxf | sort -nr -k 3'

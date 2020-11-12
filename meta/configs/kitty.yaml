@@ -1,2 +1,5 @@
+- clean:
+      ~/.config/kitty:
+
 - link:
       ~/.config/kitty/kitty.conf: configs/kitty/kitty.conf

@@ -2,8 +2,7 @@
       link:
           relink: true
           create: true
+          glob: true
 
-- clean:
-      ~/:
-      ~/.config:
-          recursive: true
+- shell:
+      - [git submodule update --init --recursive, Installing submodules]
