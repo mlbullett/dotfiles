@@ -6,8 +6,9 @@
 " Plugin call
 call plug#begin('~/.local/share/nvim/plugged')
     " Appearance
-        Plug 'deviantfero/wpgtk.vim'            " Wpgtk colorscheme
+        Plug 'chriskempson/base16-vim'          " Base16 theme
         Plug 'vim-airline/vim-airline'          " Status bar & tabline
+        Plug 'vim-airline/vim-airline-themes'   " Airline theme
     " Auto-completion
         Plug 'jiangmiao/auto-pairs'             " Automatic quote and bracket pairing
         Plug 'scrooloose/nerdcommenter'         " Automatic commenting

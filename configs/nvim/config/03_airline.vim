@@ -4,7 +4,7 @@
 "
 
 " Theme
-let g:airline_theme='wpgtk'
+let g:airline_theme='base16'
 
 " No overwriting symbols if in existence
 if !exists('g:airline_symbols')

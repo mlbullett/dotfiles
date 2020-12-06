@@ -7,7 +7,6 @@ export LANG=en_IE.UTF-8
 export LC_ALL=$LANG
 
 ### XDG
-export XDG_CURRENT_DESKTOP=Unity
 export XDG_BIN_HOME=$HOME/.local/bin
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
@@ -20,10 +19,8 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZLIB=$ZDOTDIR/lib
 
 ### Defaults
-export BROWSER=/usr/bin/brave
 export DIFF='/usr/bin/nvim -d'
 export EDITOR=/usr/bin/nvim
-export GAMEMODERUNEXEC="env __NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia"
 export GIT_EDITOR=/usr/bin/nvim
 export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0
 export INFODIR="/usr/share/info:/usr/local/share/info"
@@ -51,7 +48,6 @@ export PYLINTHOME=$XDG_DATA_HOME/pylint
 export PYLINTRC=$XDG_CONFIG_HOME/pylint/pylintrc
 export PYTHONDONTWRITEBYTECODE=1
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc.py
-export XBPS_DISTDIR="$HOME/science/linux/void/void-packages"
 export YARN_CACHE_FOLDER=$XDG_CACHE_HOME/yarn
 export _Z_DATA=$XDG_DATA_HOME/z/data
 

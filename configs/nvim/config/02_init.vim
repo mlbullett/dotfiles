@@ -6,11 +6,11 @@
 " General
 filetype plugin indent on               " Enable filetype plugins
 syntax enable                           " Use syntax-highlight
-colorscheme wpgtkAlt                    " Load wpgtk theme
+colorscheme base16-default-dark         " Load wpgtk theme
 
 set autoread                            " Reread file when changed from the outside
 set autowrite                           " Save buffers automatically
-set clipboard=unnamedplus              " Set clipboard register
+set clipboard=unnamedplus               " Set clipboard register
 set encoding=utf8                       " Utf-8 encoding
 set hidden                              " Allow buffer switching
 set history=10000                       " Length of history

@@ -22,9 +22,10 @@ alias ls='exa --git -F'
 alias lt='exa --git -lFhT'
 
 ### Package management & Updates
-alias yup='yay -Syu'
-alias yrm='yay -Rns'
-alias yfind='yay -F'
+alias yay='sudo apt install'
+alias yup='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
+alias yrm='sudo apt remove'
+alias yfind='sudo apt search'
 
 ### Readability
 alias diff='colordiff'
@@ -47,7 +48,6 @@ alias rg='rg -SpL --hidden --no-messages'
 
 ### Shortcuts and corrections
 alias clr='clear'
-alias code='code-insiders'
 alias f='tail -f'
 alias fping='ping -c 100 -s.2'
 alias pscpu='ps auxf | sort -nr -k 3'
@@ -56,7 +56,3 @@ alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 alias wget='wget -c'
-
-### Work
-alias daa='/home/max/work/DAA/tech/software/daa/bin/daadocker'
-alias por='/home/max/work/DAA/tech/software/portale/bin/portaldocker'
