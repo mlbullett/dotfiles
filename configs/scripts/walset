@@ -11,7 +11,10 @@ else
 fi
 
 # Run wal and source resulting colors
-wpg -a $WALL && wpg -rs $(basename $WALL) -n
+wpg -a $WALL && wpg -s $(basename $WALL) -n
+wal -i $WALL -n
 nitrogen --set-zoom-fill ~/.config/wpg/wallpapers/$(wpg -c)
+intellijPywalGen.sh $XDG_CONFIG_HOME/JetBrains/IntelliJIdea2020.3/
 
 source $XDG_CACHE_HOME/wal/colors.sh
+(cat $HOME/.config/wpg/sequences &)

@@ -7,6 +7,9 @@ alias ..='cd ..'
 alias md='mkdir -pv'
 alias rd='rmdir'
 
+### Docker
+alias doco='docker-compose'
+
 ### History
 alias history="history -i"
 alias h='history'

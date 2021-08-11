@@ -2,17 +2,19 @@
 
 ### Switcher for bluetooth headset profile between high quality audio (A2DP) and input/output (HSP/HFP)
 
-pacmd list-sinks | grep -q "bluez"
-if [ $? -eq 0 ]; then
-    current=$(pacmd list-sinks | grep -e 'bluez_sink' | sed 's/.*\.//;s/\>.*//')
-    case $current in
-        a2dp_sink)
-            pacmd set-card-profile bluez_card.4C_87_5D_28_56_A6 headset_head_unit
+SINK=$(pactl list sinks short | grep "bluez_output");
+MAC_ADDRESS=$(echo "$SINK" | grep -oP '(?<=\.)\w+(?=\.)');
+PROFILE=$(echo "$SINK" | grep -oP '(?<=\.)[\w-]+(?=\s)');
+
+if [ "$SINK" ]; then
+    case "$PROFILE" in
+        a2dp-sink)
+            pactl set-card-profile bluez_card."$MAC_ADDRESS" headset-head-unit
             notify-send -a "pacmd" "Switched to HSP/HFP"
             exit 0
         ;;
-        headset_head_unit)
-            pacmd set-card-profile bluez_card.4C_87_5D_28_56_A6 a2dp_sink
+        headset-head-unit)
+            pactl set-card-profile bluez_card."$MAC_ADDRESS" a2dp-sink
             notify-send -a "pacmd" "Switched to A2DP"
             exit 0
         ;;

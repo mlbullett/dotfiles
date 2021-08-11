@@ -23,7 +23,7 @@ export ZLIB=$ZDOTDIR/lib
 export BROWSER=/usr/bin/brave
 export DIFF='/usr/bin/nvim -d'
 export EDITOR=/usr/bin/nvim
-export GAMEMODERUNEXEC="env __NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia"
+export GAMEMODERUNEXEC="env DRI_PRIME=1"
 export GIT_EDITOR=/usr/bin/nvim
 export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0
 export INFODIR="/usr/share/info:/usr/local/share/info"

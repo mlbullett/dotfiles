@@ -35,15 +35,17 @@ def censor(image):
 
 
 def lock():
-    locker = ['i3lock', '-ef', '--color=000000']
+    dunst = ['dunstctl', 'set-paused', 'toggle']
+    locker = ['i3lock', '-nef', '--color=000000']
     image_path = '/tmp/lockscreen.png'
     image = take_screenshot(image_path)
     image = censor(image)
     image.save(image_path)
     locker.extend(['-i', image_path])
 
-    subprocess.call(locker)
-
+    subprocess.call(dunst)
+    proc = subprocess.call(locker)
+    subprocess.call(dunst)
 
 if __name__ == '__main__':
     lock()
