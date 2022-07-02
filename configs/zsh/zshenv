@@ -61,6 +61,6 @@ path=($XDG_BIN_HOME $XDG_BIN_HOME/private $CARGO_HOME/bin $NPM_PACKAGES/bin $GEM
 
 ### Keyring
 if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-    export SSH_AUTH_SOCK
+    #export $(gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+    dbus-update-activation-environment --systemd DISPLAY
 fi

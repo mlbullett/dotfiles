@@ -41,8 +41,11 @@ borg create                     \
     ~/vids              \
     ~/work              \
     $XDG_BIN_HOME               \
-    --exclude ~/work/DAA/tech/software \
+    --exclude ~/work/daa/tech/monorepo \
+    --exclude ~/work/daa/cloud \
     --exclude ~/science/linux/flatpak \
+    --exclude ~/.config/BraveSoftware \
+    --exclude ~/.config/unity3d \
     2>&1
 
 backup_exit=$?

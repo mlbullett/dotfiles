@@ -48,4 +48,5 @@ def lock():
     subprocess.call(dunst)
 
 if __name__ == '__main__':
+    subprocess.call(['xset', 'dpms', 'force', 'off'])
     lock()
