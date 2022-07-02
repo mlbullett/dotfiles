@@ -1,6 +1,12 @@
 - clean:
-      ~/.config/bin:
+      ~/.local/bin:
+      ~/.config/systemd/user/:
 
 - link:
       ~/.local/bin:
           path: configs/scripts/*
+      ~/.config/systemd/user/backup.timer: configs/scripts/systemd/backup.timer
+      ~/.config/systemd/user/backup.service: configs/scripts/systemd/backup.service
+
+- shell:
+      - systemctl --user enable --now backup.timer

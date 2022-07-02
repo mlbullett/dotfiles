@@ -1,0 +1,6 @@
+- clean:
+      ~/.config/swappy:
+          recursive: true
+
+- link:
+      ~/.config/swappy/config: configs/swappy/config

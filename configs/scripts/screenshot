@@ -1,0 +1,20 @@
+#!/bin/bash
+
+list_geometry() {
+    swaymsg -t get_tree | jq -r '.. | (.nodes? // empty)[] | select(.'"$1"' and .pid) | "\(.rect.x),\(.rect.y) \(.rect.width)x\(.rect.height)''"'
+}
+
+FOCUSED=$(list_geometry focused)
+CHOICE=$1
+DIR=${SCREENSHOT_DIR:=$HOME/pictures/screenshots}
+
+mkdir -p "$DIR"
+
+case $CHOICE in
+    area) grim -g "$(slurp -d)" - | swappy -f -;;
+    focused) grim -g "$FOCUSED" - | swappy -f -;;
+    window) grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)" - | swappy -f -;;
+    output) grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" - | swappy -f -;;
+    screen) grim - | swappy -f -;;
+esac
+

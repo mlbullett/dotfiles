@@ -6,7 +6,6 @@
 " General
 filetype plugin indent on               " Enable filetype plugins
 syntax enable                           " Use syntax-highlight
-colorscheme wpgtkAlt                    " Load wpgtk theme
 
 set autoread                            " Reread file when changed from the outside
 set autowrite                           " Save buffers automatically

@@ -1,0 +1,11 @@
+- clean:
+      ~/.config/kanshi:
+          recursive: true
+      ~/config/systemd/user/kanshi.service:
+
+- link:
+      ~/.config/kanshi/config: configs/kanshi/config
+      ~/.config/systemd/user/kanshi.service: configs/kanshi/kanshi.service
+
+- shell:
+      - systemctl --user enable --now kanshi.service

@@ -6,37 +6,19 @@
 " Map leader shortcuts
 let mapleader = ";"
 
-" Colemak navigation shortcuts
-noremap n h
-noremap e k 
-noremap i j
-noremap o l
-noremap h n
-noremap k e
-noremap j i
-noremap l o
-noremap N H
-noremap E K
-noremap I J
-noremap O L
-noremap H N
-noremap K E
-noremap J I
-noremap L O
-
 " Faster window split navigation
-noremap <A-n> <C-w>n
-noremap <A-e> <C-w>e
-noremap <A-i> <C-w>i
-noremap <A-o> <C-w>o
-noremap <A-Left> <C-w>n
-noremap <A-Down> <C-w>e
-noremap <A-Up> <C-w>i
-noremap <A-Right> <C-w>o
+noremap <A-h> <C-w>h
+noremap <A-k> <C-w>k
+noremap <A-j> <C-w>j
+noremap <A-l> <C-w>l
+noremap <A-Left> <C-w>h
+noremap <A-Down> <C-w>k
+noremap <A-Up> <C-w>j
+noremap <A-Right> <C-w>l
 
 " BOL/EOL
-noremap <c-n> <home>
-noremap <c-o> <end>
+noremap <c-h> <home>
+noremap <c-l> <end>
 
 " Quick save
 noremap <leader>w :w!<CR>

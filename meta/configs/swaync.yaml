@@ -1,0 +1,7 @@
+- clean:
+      ~/.config/swaync:
+          recursive: true
+
+- link:
+      ~/.config/swaync/config.json: configs/swaync/config.json
+      ~/.config/swaync/style.css: configs/swaync/style.css

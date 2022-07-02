@@ -1,0 +1,7 @@
+- clean:
+      ~/.config/gtklock:
+          recursive: true
+
+- link:
+      ~/.config/gtklock/config.ini: configs/gtklock/config.ini
+      ~/.config/gtklock/style.css: configs/gtklock/style.css

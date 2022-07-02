@@ -5,8 +5,8 @@
 
 # Variables
 export BORG_REPO="$HOME/archive/borg"
-export BORG_PASSPHRASE=$(cat $HOME/archive/.key)
-RCLONE_REPO="google:backup"
+export BORG_PASSPHRASE=$(cat "$HOME"/archive/.key)
+RCLONE_REPO="b2:mlbullett-backup"
 BACKUP_NAME="::$(hostname)-$(date '+%Y-%m-%d_%H:%M')"
 export BORG_FILES_CACHE_TTL=20
 
@@ -31,18 +31,18 @@ borg create                     \
     --compression zlib          \
     --exclude-caches            \
     "$BACKUP_NAME"              \
-    ~/books             \
-    ~/.config           \
-    ~/dotfiles          \
-    ~/docs              \
-    ~/music             \
-    ~/pics              \
-    ~/science           \
-    ~/vids              \
-    ~/work              \
+    ~/.config                   \
+    ~/documents                 \
+    ~/dotfiles                  \
+    ~/music                     \
+    ~/pictures                  \
+    ~/science                   \
+    ~/videos                    \
+    ~/work                      \
     $XDG_BIN_HOME               \
-    --exclude ~/work/DAA/tech/software \
-    --exclude ~/science/linux/flatpak \
+    --exclude ~/work/daa/tech/monorepo \
+    --exclude ~/work/daa/cloud \
+    --exclude ~/.config/unity3d \
     2>&1
 
 backup_exit=$?
@@ -53,10 +53,10 @@ echo "Pruning repository"
 borg prune                      \
     -s                          \
     --show-rc                   \
-    --prefix "$(hostname)-"     \
     --keep-daily    7           \
     --keep-weekly   4           \
     --keep-monthly  6           \
+    --keep-yearly   1           \
     2>&1
 
 prune_exit=$?

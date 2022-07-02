@@ -1,0 +1,45 @@
+window {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+}
+window#eDP-1 {
+    background-image: url("/tmp/eDP-1.png");
+}
+window#eDP-2 {
+    background-image: url("/tmp/eDP-2.png");
+}
+window#DP-1 {
+    background-image: url("/tmp/DP-1.png");
+}
+window#DP-2 {
+    background-image: url("/tmp/DP-2.png");
+}
+window#DP-3 {
+    background-image: url("/tmp/DP-3.png");
+}
+window#DP-4 {
+    background-image: url("/tmp/DP-4.png");
+}
+window#DP-5 {
+    background-image: url("/tmp/DP-5.png");
+}
+window#DP-6 {
+    background-image: url("/tmp/DP-6.png");
+}
+window#DP-7 {
+    background-image: url("/tmp/DP-7.png");
+}
+window#DP-8 {
+    background-image: url("/tmp/DP-8.png");
+}
+window#DP-9 {
+    background-image: url("/tmp/DP-9.png");
+}
+window#HDMI-A-1 {
+    background-image: url("/tmp/HDMI-A-1.png");
+}
+window#HDMI-A-2 {
+    background-image: url("/tmp/HDMI-A-2.png");
+}

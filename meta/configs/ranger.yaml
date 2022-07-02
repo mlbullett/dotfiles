@@ -1,0 +1,6 @@
+- clean:
+      ~/.config/ranger:
+          recursive: true
+
+- link:
+      ~/.config/ranger: configs/ranger/*

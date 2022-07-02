@@ -1,0 +1,7 @@
+- clean:
+      ~/.config/nwg-drawer:
+          recursive: true
+
+- link:
+      ~/.config/nwg-drawer:
+          path: configs/nwg-drawer/*

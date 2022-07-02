@@ -6,10 +6,12 @@ My dotfiles, managed with [dotbot](https://github.com/anishathalye/dotbot/).
 
 These dotfiles contain the following :
 
--   [kitty](https://github.com/kovidgoyal/kitty)
--   [nvim](https://github.com/neovim/neovim) using [vimplug](https://github.com/junegunn/vim-plug)
--   zsh using [zinit](https://github.com/zdharma/zinit)
--   and various local [scripts](configs/scripts) that are used throughout the config and should be checked on an individual basis (installation puts them in ~/.local/bin/ which should be added to \$PATH if not already)
+- [kovidgoyal/kitty](https://github.com/kovidgoyal/kitty)
+- [neovim/neovim](https://github.com/neovim/neovim) using [junegunn/vimplug](https://github.com/junegunn/vim-plug)
+- zsh using [z-shell/zi](https://github.com/z-shell/zi)
+- [swaywm/sway](https://github.com/swaywm/sway)
+- [emersion/kanshi](https://sr.ht/~emersion/kanshi/)
+- and various local [scripts](configs/scripts) that are used throughout the config and should be checked on an individual basis (installation puts them in ~/.local/bin/ which should be added to \$PATH if not already)
 
 ## Usage
 

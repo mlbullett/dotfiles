@@ -1,0 +1,5 @@
+set $term alacritty
+set $browser brave
+set $filemanager thunar
+set $editor mousepad
+set $launcher nwg-drawer -c 6 -is 64 -fscol 2 -ovl -term alacritty
