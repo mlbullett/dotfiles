@@ -1,0 +1,97 @@
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: CaskaydiaCove Nerd Font Mono Light, monospace;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: shade(alpha(@theme_base_color, 0.8), 1.33);
+    color: @theme_text_color;
+}
+
+#workspaces * {
+    padding: 0 4px;
+    background: transparent;
+}
+
+#workspaces button {
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button.focused {
+    border-bottom: 2px solid @theme_fg_color;
+}
+
+#workspaces button.visible {
+
+}
+
+#workspaces button.urgent {
+
+}
+
+#workspaces button.hidden {
+
+}
+
+#mode {
+    border-bottom: 2px solid @theme_fg_color;
+}
+
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
+    padding: 0 3px;
+    margin: 0 2px;
+}
+
+#clock {
+    font-weight: bold;
+}
+
+#battery {
+}
+
+#battery icon {
+    color: red;
+}
+
+#battery.charging {
+}
+
+@keyframes blink {
+    to {
+        background-color: #ECEFF4;
+        color: black;
+    }
+}
+
+#battery.warning:not(.charging) {
+    color: #ECEFF4;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+}
+
+#memory {
+}
+
+#network {
+}
+
+#network.disconnected {
+    background: #f53c3c;
+}
+
+#pulseaudio {
+}
+
+#pulseaudio.muted {
+}
+

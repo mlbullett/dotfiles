@@ -1,0 +1,6 @@
+- clean:
+      ~/.config/avizo:
+          recursive: true
+
+- link:
+      ~/.config/avizo/config.ini: configs/avizo/config.ini

@@ -1,0 +1,11 @@
+- clean:
+      ~/.config/sway:
+          recursive: true
+      ~/.config/systemd/user/:
+
+- link:
+      ~/.config/sway/config: configs/sway/config
+      ~/.config/systemd/user/sway-session.target: configs/sway/sway-session.target
+
+- shell:
+      - systemctl --user enable --now sway-session.target

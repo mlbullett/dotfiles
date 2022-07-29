@@ -1,0 +1,7 @@
+add_newline = true
+command_timeout = 1000
+scan_timeout = 500
+
+[cmd_duration]
+min_time = 100
+show_milliseconds = true

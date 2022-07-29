@@ -5,6 +5,8 @@
 
 - link:
       ~/.zshenv: configs/zsh/zshenv
+      ~/.config/starship.toml: configs/zsh/starship.toml
       ~/.config/zsh/.zshrc: configs/zsh/zshrc
+      ~/.config/zsh/.zimrc: configs/zsh/zimrc
       ~/.config/zsh/lib:
           path: configs/zsh/lib/*

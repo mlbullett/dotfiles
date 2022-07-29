@@ -53,8 +53,8 @@
     bindings=(
         Left            backward-char
         Right           forward-char
-        # Up              history-substring-search-up
-        # Down            history-substring-search-down
+        Up              history-substring-search-up
+        Down            history-substring-search-down
         Backspace       backward-delete-char
         Delete          delete-char
         Home            beginning-of-line

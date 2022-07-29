@@ -1,0 +1,7 @@
+- clean:
+      ~/.config/wofi:
+          recursive: true
+
+- link:
+      ~/.config/wofi/config: configs/wofi/config
+      ~/.config/wofi/style.css: configs/wofi/style.css

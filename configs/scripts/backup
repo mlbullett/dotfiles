@@ -5,7 +5,7 @@
 
 # Variables
 export BORG_REPO="$HOME/archive/borg"
-export BORG_PASSPHRASE=$(cat $HOME/archive/.key)
+export BORG_PASSPHRASE=$(cat "$HOME"/archive/.key)
 RCLONE_REPO="google:backup"
 BACKUP_NAME="::$(hostname)-$(date '+%Y-%m-%d_%H:%M')"
 export BORG_FILES_CACHE_TTL=20
@@ -31,20 +31,18 @@ borg create                     \
     --compression zlib          \
     --exclude-caches            \
     "$BACKUP_NAME"              \
-    ~/books             \
-    ~/.config           \
-    ~/dotfiles          \
-    ~/docs              \
-    ~/music             \
-    ~/pics              \
-    ~/science           \
-    ~/vids              \
-    ~/work              \
+    ~/.config                   \
+    ~/code                      \
+    ~/documents                 \
+    ~/dotfiles                  \
+    ~/music                     \
+    ~/pictures                  \
+    ~/science                   \
+    ~/videos                    \
+    ~/work                      \
     $XDG_BIN_HOME               \
     --exclude ~/work/daa/tech/monorepo \
     --exclude ~/work/daa/cloud \
-    --exclude ~/science/linux/flatpak \
-    --exclude ~/.config/BraveSoftware \
     --exclude ~/.config/unity3d \
     2>&1
 

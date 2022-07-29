@@ -2,80 +2,6 @@
 ### .zshrc
 ###########
 
-
-##########################################################
-### Start of zinit block
-##########################################################
-# Install if missing
-if [[ ! -f $HOME/.config/zsh/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.config/zsh/.zinit" && command chmod g-rwX "$HOME/.config/zsh/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.config/zsh/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
-
-# Load
-source "$HOME/.config/zsh/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-bin-gem-node
-
-##########################################################
-### End of zinit block
-##########################################################
-
-### Colours
-(cat $HOME/.config/wpg/sequences &)
-
-### Prompt
-zinit light denysdovhan/spaceship-prompt
-SPACESHIP_VI_MODE_SHOW=false
-
-### OMZ
-zinit ice wait lucid
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/thefuck/thefuck.plugin.zsh
-
-zinit ice wait lucid as'completion' blockf
-zinit snippet OMZ::plugins/ripgrep/_ripgrep
-
-### Plugins
-zinit ice depth=1 lucid
-zinit light trystan2k/zsh-tab-title
-
-zinit ice depth=1 wait lucid
-zinit light Aloxaf/fzf-tab
-
-zinit ice depth=1 wait blockf lucid atpull"zinit creinstall -q ."
-zinit light clarketm/zsh-completions
-
-zinit ice depth=1 wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
-zinit light zdharma/fast-syntax-highlighting
-
-zinit ice depth=1 wait lucid compile"{src/*.zsh,src/strategies/*.zsh}" atload"_zsh_autosuggest_start"
-zinit light zsh-users/zsh-autosuggestions
-
-zinit ice depth=1 wait lucid atload"bindkey '$terminfo[kcuu1]' history-substring-search-up; bindkey '$terminfo[kcud1]' history-substring-search-down"
-zinit light zsh-users/zsh-history-substring-search
-
-zinit ice depth=1 lucid
-zinit load agkozak/zsh-z
-
-### Packages
-zinit pack"bgn-binary+keys" for fzf
-
 ### Configuration
 typeset -g WORDCHARS=${WORDCHARS//\/[&.;]}
 typeset -g ZLE_REMOVE_SUFFIX_CHARS=''
@@ -88,12 +14,37 @@ setopt numericglobsort
 setopt nobeep
 setopt autocd
 
+### Zim
+# Set folder
+ZIM_HOME=${ZDOTDIR}/zim
+if [[ ! -r ${ZIM_HOME} ]]; then
+    mkdir ${ZIM_HOME}
+fi
+
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
+### GPG agent
+export GPG_TTY=$(tty)
+
 ### Sourcing
 source $ZLIB/aliases.zsh
 source $ZLIB/completion.zsh
 source $ZLIB/history.zsh
 source $ZLIB/keybindings.zsh
-source $ZLIB/plugins.zsh
+source $ZLIB/themes.zsh
 
-### GPG agent
-export GPG_TTY=$(tty)
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway-run
+fi

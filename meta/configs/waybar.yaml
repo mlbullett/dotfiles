@@ -1,0 +1,9 @@
+- clean:
+      ~/.config/waybar:
+          recursive: true
+
+- link:
+      ~/.config/waybar/config: configs/waybar/config
+      ~/.config/waybar/style.css: configs/waybar/style.css
+      ~/.config/waybar/modules:
+          path: configs/waybar/modules/*

@@ -1,10 +1,10 @@
 "
-" ~/.config/nvim/config/03_airline.vim
+" ~/.config/nvim/config/03_theme.vim
 " Airline settings
 "
 
 " Theme
-let g:airline_theme='wpgtk'
+let g:airline_theme='nord'
 
 " No overwriting symbols if in existence
 if !exists('g:airline_symbols')
@@ -42,3 +42,6 @@ let g:airline_symbols.linenr = ''
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#ale#enabled = 1
+
+let g:nord_uniform_status_lines = 0
+colorscheme nord                    " Load wpgtk theme

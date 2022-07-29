@@ -64,5 +64,5 @@ alias wget='wget -c'
 alias Z='z'
 
 ### Work
-alias daa='/home/max/work/DAA/tech/software/daa/bin/daadocker'
-alias por='/home/max/work/DAA/tech/software/portale/bin/portaldocker'
+alias daa='/home/max/work/DAA/tech/monorepo/daa/bin/daadocker'
+alias por='/home/max/work/DAA/tech/monorepo/portale/bin/portaldocker'

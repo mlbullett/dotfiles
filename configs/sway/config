@@ -1,0 +1,372 @@
+#
+# ~/.config/sway/config
+# Wayland tiling window manager
+# Read `man 5 sway` for a complete reference.
+#
+
+### Initialisation
+## Colors
+# Nord Color Palettes
+# Polar Night
+set $nord0 #2E3440
+set $nord1 #3B4252
+set $nord2 #434C5E
+set $nord3 #4C566A
+
+# Snow Storm
+set $nord4 #D8DEE9
+set $nord5 #E5E9F0
+set $nord6 #ECEFF4
+
+# Frost
+set $nord7 #8FBCBB
+set $nord8 #88C0D0
+set $nord9 #81A1C1
+set $nord10 #5E81AC
+
+# Aurora
+set $nord11 #BF616A
+set $nord12 #D08770
+set $nord13 #EBCB8B
+set $nord14 #A3BE8C
+set $nord15 #B48EAD
+
+# Target                border      background  text        indicator   child border
+client.focused          $nord8      $nord2      $nord6      $nord8      $nord8
+client.focused_inactive $nord9      $nord2      $nord6      $nord9      $nord9
+client.unfocused        $nord10     $nord2      $nord6      $nord10     $nord10
+client.urgent           $nord11     $nord2      $nord6      $nord11     $nord11
+
+## Variables
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+set $term alacritty
+set $term_float alacritty --class floating_shell -e
+set $browser firefox
+set $files thunar
+set $menu wofi --show=drun --prompt="" | xargs swaymsg -q exec --
+# Note: pass the final command to swaymsg so that the resulting window can be opened on the original workspace that the command was run on.
+#set $menu rofi -show drun | xargs swaymsg exec
+#set $calc rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo '{result}' | wl-copy" | xargs swaymsg exec
+#set $emoji rofi -show emoji | xargs swaymsg exec
+set $lock swaylock -c 000000
+#set $switcher switcher
+
+## Vim bindings
+set $left h
+set $down j
+set $up k
+set $right l
+
+## Output configuration
+# Example configuration:
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+
+### Idle configuration
+# Example configuration:
+exec 1
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+# Example configuration:
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+input "12951:6505:ZSA_Moonlander_Mark_I_Keyboard" {
+    xkb_layout "eu"
+}
+
+input "2821:6582:Asus_Keyboard" {
+    xkb_layout "eu"
+}
+
+input "1267:12699:ASUE120A:00_04F3:319B_Touchpad" {
+        #events disabled_on_external_mouse
+        natural_scroll enabled
+        scroll_method two_finger
+        tap enabled
+        tap_button_map lrm
+}
+
+exec_always swaymsg seat '*' hide_cursor 5000
+
+### General settings
+default_orientation auto
+default_border pixel 3
+gaps outer 0
+gaps inner 10
+smart_borders no_gaps
+smart_gaps on
+font pango:CaskaydiaCove Nerd Font Mono Light 14
+focus_on_window_activation urgent
+mouse_warping container
+
+# set floating mode for specific applications
+for_window [app_id="" title=".* is sharing your screen."] floating enable
+for_window [title="^wlay$"] floating enable
+for_window [class="firefox"] inhibit_idle fullscreen
+for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 1, sticky enable
+for_window [title="Firefox — Sharing Indicator"] floating enable
+for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
+for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
+for_window [app_id="lockscreen"] floating enable
+for_window [instance="lxappearance"] floating enable
+for_window [app_id="mpv"] inhibit_idle fullscreen
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="" title="Picture in picture"] floating enable, sticky enable
+for_window [app_id="" title="Picture-in-Picture"] floating enable, sticky enable
+for_window [title="Save File"] floating enable
+for_window [instance="speedcrunch"] floating enable
+
+### Key bindings
+# Application shortcuts
+bindsym $mod+Return exec $term
+bindsym $mod+b exec $browser
+bindsym $mod+d exec $menu
+bindsym $mod+c exec $calc
+bindsym $mod+e exec $emoji
+bindsym $mod+p exec $files
+#bindsym $mod+t exec "rofi-trans"
+bindsym $mod+grave exec "headset_switch_profile"
+bindsym $mod+Tab exec $switcher
+
+# XF86 keys
+bindsym XF86AudioLowerVolume exec "volumectl -u down"
+bindsym XF86AudioRaiseVolume exec "volumectl -u up"
+bindsym XF86AudioMicMute exec "volumectl -m %"
+bindsym XF86AudioMute exec "volumectl toggle-mute"
+bindsym XF86MonBrightnessDown exec "lightctl down"
+bindsym XF86MonBrightnessUp exec "lightctl up"
+bindsym XF86KbdBrightnessDown exec "keyboard-leds down"
+bindsym XF86KbdBrightnessUp exec "keyboard-leds up"
+bindsym XF86Launch3 exec "keyboard-leds next"
+bindsym XF86TouchpadToggle input type:touchpad events toggle enabled disabled
+bindsym XF86AudioPlay exec "playerctl play-pause"
+bindsym XF86AudioNext exec "playerctl next"
+bindsym XF86AudioPrev exec "playerctl previous"
+bindsym XF86Launch4 exec "asusctl profile -n"
+
+# Utility shortcuts
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c reload
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Moving around:
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Workspaces:
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Moving focused workspace
+bindsym $mod+Mod1+Left move workspace to output left
+bindsym $mod+Mod1+Down move workspace to output down
+bindsym $mod+Mod1+Right move workspace to output right
+bindsym $mod+Mod1+Up move workspace to output up
+bindsym $mod+Mod1+KP_Left move workspace to output left
+bindsym $mod+Mod1+KP_Down move workspace to output down
+bindsym $mod+Mod1+KP_Right move workspace to output right
+bindsym $mod+Mod1+KP_Up move workspace to output up
+bindsym $mod+Mod1+$left move workspace to output left
+bindsym $mod+Mod1+$down move workspace to output down
+bindsym $mod+Mod1+$up move workspace to output up
+bindsym $mod+Mod1+$right move workspace to output right
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+
+# Layout stuff:
+
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+#bindsym $mod+b splith
+#bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+x layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10ppt
+    bindsym $down resize grow height 10ppt
+    bindsym $up resize shrink height 10ppt
+    bindsym $right resize grow width 10ppt
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10ppt
+    bindsym Down resize grow height 10ppt
+    bindsym Up resize shrink height 10ppt
+    bindsym Right resize grow width 10ppt
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym space mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Screen capture menu
+set $screencapbuffer "screencap (buffer): [a]rea [w]indow [o]utput [s]creen"
+mode $screencapbuffer {
+    bindsym a exec "grimshot --notify copy area"
+    bindsym w exec "grimshot --notify copy window"
+    bindsym o exec "grimshot --notify copy output"
+    bindsym s exec "grimshot --notify copy screen"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym space mode "default"
+}
+bindsym Print mode $screencapbuffer
+bindsym $mod+Shift+s mode $screencapbuffer
+
+set $screencapfile "screencap (file): [a]rea [w]indow [o]utput [s]creen"
+mode $screencapfile {
+    bindsym a exec "grimshot --notify save area $(xdg-user-dir PICTURES)/screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+    bindsym w exec "grimshot --notify save window $(xdg-user-dir PICTURES)/screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+    bindsym o exec "grimshot --notify save output $(xdg-user-dir PICTURES)/screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+    bindsym s exec "grimshot --notify save screen $(xdg-user-dir PICTURES)/screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym space mode "default"
+}
+bindsym ctrl+Print mode $screencapfile
+bindsym $mod+ctrl+Shift+s mode $screencapfile
+
+# Playerctlm
+set $playermenu "[p]lay|pause [b]ack [n]ext [◀ ▶] 10 second scrobble"
+mode $playermenu {
+    bindsym p "exec playerctl play-pause"
+    bindsym n "exec playerctl next"
+    bindsym b "exec playerctl previous"
+    bindsym Left "exec playerctl position 10-"
+    bindsym Right "exec playerctl position 10+"
+    bindsym KP_Left "exec playerctl position 10-"
+    bindsym KP_Right "exec playerctl position 10+"
+    bindsym Return mode "default"
+    bindsym KP_Enter mode "default"
+    bindsym Escape mode "default"
+    bindsym space mode "default"
+}
+bindsym $mod+m mode $playermenu
+
+# Exit sway (logs you out of your Wayland session)
+set $exitmenu "[l]ock [e]xit [s]uspend [h]ibernate [r]eboot  [p]oweroff"
+mode $exitmenu {
+    bindsym l exec "playerctl stop || true && swaymsg mode "default" && $lock"
+    bindsym e exit
+    bindsym s exec "swaymsg mode "default" && systemctl suspend-then-hibernate"
+    bindsym h exec "swaymsg mode "default" && systemctl hibernate"
+    bindsym r exec "systemctl reboot"
+    bindsym p exec "systemctl poweroff"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym space mode "default"
+}
+bindsym $mod+Shift+e mode $exitmenu
+
+### Cursor fixes
+seat seat0 xcursor_theme "oreo_nord_snow_3_cursors" 24
+exec_always gsettings set org.gnome.desktop.interface cursor-theme "oreo_nord_snow_3_cursors"
+exec_always gsettings set org.gnome.desktop.interface cursor-size 24
+
+### Autostart
+exec "systemctl --user import-environment {,WAYLAND_}DISPLAY SWAYSOCK; systemctl --user start sway-session.target"
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec_always "systemctl --user restart kanshi.service"
+exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY"
+exec --no-startup-id "/usr/lib/geoclue-2.0/demos/agent"
+exec "wl-paste -t text --watch clipman store --no-persist"
+exec "avizo-service"
+exec "autotiling"
+exec_always --no-startup-id 'nm-applet --indicator'
+exec_always --no-startup-id 'blueman-applet'

@@ -1,0 +1,130 @@
+{
+  // Bar config
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+  "spacing": 4,
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": [ "custom/date", "custom/weather"],
+  "modules-right": ["cpu", "temperature", "memory", "network", "bluetooth", "pulseaudio", "backlight", "battery", "idle_inhibitor", "tray"],
+  // Modules
+  // Left
+  "sway/workspaces": {
+    "all-outputs": false,
+    "format": "{name}",
+    "disable-scroll": true,
+    "tooltip": false,
+    "on-click": "activate",
+    "on-click-right": "close"
+  },
+  "sway/mode": {
+    "format": "{}",
+    "tooltip": false
+  },
+  // Center
+  "custom/date": {
+    "format": "{}",
+    "exec": "$HOME/.config/waybar/modules/date.sh",
+    "return-type": "json",
+    "interval": 1,
+    "tooltip": false
+  },
+  "custom/weather": {
+    "format": "{}",
+    "exec": "$HOME/.config/waybar/modules/weather.sh",
+    "exec-if": "ping 1.1.1.1 -c1",
+    "return-type": "json",
+    "interval": 220,
+    "tooltip": false
+  },
+  // Right
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-scroll-up": "swaymsg -q exec lightctl up",
+    "on-scroll-down": "swaymsg -q exec lightctl down"
+  },
+  "battery": {
+    "full-at": 80,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-time": "{H} hours and {M} minutes",
+    "format-charging": " {capacity}%",
+    "format-icons": ["", "", "", "", "", ""],
+    "tooltip": true
+  },
+  "cpu": {
+    "interval": 10,
+    "format": " {usage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "on-click": "swaymsg -q exec \\$term_float htop"
+  },
+  "memory": {
+    "interval": 2,
+    "format": "{}% ",
+    "format": "\uF0C9 {}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "on-click": "swaymsg -q exec \\$term_float htop"
+  },
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {num_connections}",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  },
+  "network": {
+    "interval": 5,
+    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-ethernet": " {ipaddr}/{cidr}",
+    "tooltip-format": " {ifname} via {gwaddr}",
+    "format-linked": " {ifname} (No IP)",
+    "format-disconnected": "⚠ Disconnected",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click": "swaymsg -q exec \\$term_float nmtui"
+  },
+  "pulseaudio": {
+    "scroll-step": 1, // %, can be a float
+    "format": "{icon} {volume}% {format_source}",
+    "format-bluetooth": "{icon} {volume}%{format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "tooltip-format": "{icon} {volume}% {format_source}",
+    // "on-click": "pavucontrol"
+    "on-click": "swaymsg -q exec pavucontrol",
+    "on-scroll-up": "swaymsg -q exec 'volumectl -u up'",
+    "on-scroll-down": "swaymsg -q exec 'volumectl -u down'"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "on-click-right": "playerctl stop || true && swaymsg -q mode \"default\" && swaymsg -q exec \\$lock",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+    }
+}
