@@ -1,0 +1,49 @@
+* {
+    font-family: "CaskaydiaCove Nerd Font Mono Light", monospace;
+    font-size: 14px;
+}
+
+window {
+    background-color: #3B4252;
+    border: 3px solid #88C0D0;
+    border-radius: 1.5em;
+}
+
+#input {
+    margin: 5px;
+    border-radius: 0;
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+
+#inner-box {
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 2px;
+    padding: 10px;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 5px;
+}
+
+#text {
+    padding: 4px;
+    color: white;
+}
+
+#entry:nth-child(even){
+    background-color: #404552;
+}
+
+#entry:selected {
+    background-color: #4C566A;
+}
+
+#text:selected {
+    background: transparent;
+}
