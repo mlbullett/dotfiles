@@ -2,24 +2,13 @@
  * vim: ft=less 
  */
 
-@define-color cc-bg @shadow_color;
-
-@define-color noti-border-color @borders_color;
-@define-color noti-bg @bg_color;
-@define-color noti-bg-hover @popover_hover_color;
-@define-color noti-bg-focus @theme_fg_color;
-@define-color noti-close-bg @wm_button_active_color_c;
-@define-color noti-close-bg-hover @wm_button_hover_color_b;
-
-@define-color bg-selected @theme_selected_bg_color;
-
 .notification-row {
   outline: none;
 }
 
 .notification-row:focus,
 .notification-row:hover {
-  background: @noti-bg-focus;
+  background: @bg_color;
 }
 
 .notification {
@@ -42,13 +31,13 @@
   padding: 6px;
   border-radius: 12px;
 }
+*/
 
 .critical {
-  background: red;
+  background: @error_color;
   padding: 6px;
   border-radius: 12px;
 }
-*/
 
 .notification-content {
   background: transparent;
@@ -57,7 +46,7 @@
 }
 
 .close-button {
-  background: @noti-close-bg;
+  background: @warning_color;
   color: white;
   text-shadow: none;
   padding: 0;
@@ -72,7 +61,7 @@
 
 .close-button:hover {
   box-shadow: none;
-  background: @noti-close-bg-hover;
+  background: @error_color;
   transition: all 0.15s ease-in-out;
   border: none;
 }
@@ -82,15 +71,16 @@
   padding: 4px;
   margin: 0;
   box-shadow: none;
-  background: @noti-bg;
-  border: 1px solid @noti-border-color;
-  color: white;
+  background: @bg_color;
+  border: 1px solid @border_color;
+  color: @text_color;
 }
 
 .notification-default-action:hover,
 .notification-action:hover {
   -gtk-icon-effect: none;
-  background: @noti-bg-hover;
+  background: @selected_bg_color;
+  color: @base_color;
 }
 
 .notification-default-action {
@@ -116,7 +106,7 @@
 
 .notification-action:last-child {
   border-bottom-right-radius: 10px;
-  border-right: 1px solid @noti-border-color;
+  border-right: 1px solid @border_color;
 }
 
 .image {
@@ -154,29 +144,29 @@
 .control-center-clear-all {
   color: white;
   text-shadow: none;
-  background: @noti-bg;
-  border: 1px solid @noti-border-color;
+  background: @base_color;
+  border: 1px solid @theme_base_color;
   box-shadow: none;
   border-radius: 12px;
 }
 
 .control-center-clear-all:hover {
-  background: @noti-bg-hover;
+  background: @theme_bg_color-hover;
 }
 
 .control-center-dnd {
   border-radius: 12px;
-  background: @noti-bg;
-  border: 1px solid @noti-border-color;
+  background: @theme_bg_color;
+  border: 1px solid @theme_border_color;
   box-shadow: none;
 }
 
 .control-center-dnd:checked {
-  background: @bg-selected;
+  background: @selected_bg_color;
 }
 
 .control-center-dnd slider {
-  background: @noti-bg-hover;
+  background: @fg_color;
   border-radius: 12px;
 }
 
@@ -184,7 +174,7 @@
  * Can't apply padding and margin so may be easier to use "> box" instead
  */
 .control-center {
-  background: @cc-bg;
+  background: @base_color;
 }
 
 /* The first control-center child. May be easier to style this than .control-center */

@@ -24,10 +24,10 @@ set $nord14 #A3BE8C
 set $nord15 #B48EAD
 
 # Target                border      background  text        indicator   child border
-client.focused          $nord8      $nord2      $nord6      $nord8      $nord8
-client.focused_inactive $nord9      $nord2      $nord6      $nord9      $nord9
-client.unfocused        $nord10     $nord2      $nord6      $nord10     $nord10
-client.urgent           $nord11     $nord2      $nord6      $nord11     $nord11
+client.focused          $nord8      $nord0      $nord6      $nord8      $nord8
+client.focused_inactive $nord9      $nord0      $nord6      $nord9      $nord9
+client.unfocused        $nord10     $nord0      $nord6      $nord10     $nord10
+client.urgent           $nord11     $nord0      $nord6      $nord11     $nord11
 
 # #070C13
 # #01040B

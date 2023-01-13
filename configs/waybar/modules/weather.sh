@@ -16,4 +16,4 @@ fi
 TEMP=$(printf "%.0f" "$(jq -r .currently.temperature $CACHE)")
 SUMMARY=$(jq -r .hourly.summary $CACHE)
 
-echo -e "{\"text\":\" | $TEMP°C $SUMMARY\"}"
+echo -e "{\"text\":\"| $TEMP°C $SUMMARY\"}"

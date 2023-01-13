@@ -1,0 +1,7 @@
+- clean:
+      ~/.config/kitty:
+          recursive: true
+
+- link:
+      ~/.config/kitty/kitty.conf: configs/kitty/kitty.conf
+      ~/.config/kitty/diff.conf: configs/kitty/diff.conf

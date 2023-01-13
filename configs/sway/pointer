@@ -5,3 +5,5 @@ input "type:pointer" {
   scroll_factor 1.0
   left_handed disabled
 }
+
+seat seat0 xcursor_theme oreo_nord_snow_1_cursors 32

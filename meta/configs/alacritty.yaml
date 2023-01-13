@@ -1,6 +1,0 @@
-- clean:
-      ~/.config/alacritty:
-          recursive: true
-
-- link:
-      ~/.config/alacritty/alacritty.yml: configs/alacritty/alacritty.yml

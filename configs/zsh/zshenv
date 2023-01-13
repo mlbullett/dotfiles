@@ -57,3 +57,6 @@ export _Z_DATA=$XDG_DATA_HOME/z/data
 ### PATH
 typeset -U path
 path=($XDG_BIN_HOME $XDG_BIN_HOME/private $CARGO_HOME/bin $NPM_PACKAGES/bin $GEM_PATH/bin  $path[@])
+
+### NVM
+source /usr/share/nvm/init-nvm.sh

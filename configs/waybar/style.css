@@ -1,4 +1,3 @@
-
 * {
     border: none;
     border-radius: 0;
@@ -8,8 +7,8 @@
 }
 
 window#waybar {
-    background: alpha(@theme_base_color, 0.9);
-    color: @theme_text_color;
+    background: @headerbar_color;
+    color: @text_color;
 }
 
 #workspaces * {
@@ -22,7 +21,7 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    border-bottom: 2px solid @theme_fg_color;
+    border-bottom: 2px solid @fg_color;
 }
 
 #workspaces button.visible {
@@ -42,8 +41,7 @@ window#waybar {
 }
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #custom-notification, #idle_inhibitor {
-    padding: 0 3px;
-    margin: 0 2px;
+    padding: 2px 4px;
 }
 
 #clock {
@@ -54,7 +52,7 @@ window#waybar {
 }
 
 #battery icon {
-    color: red;
+    color: @error_color;
 }
 
 #battery.charging {
@@ -62,13 +60,13 @@ window#waybar {
 
 @keyframes blink {
     to {
-        background-color: #ECEFF4;
-        color: black;
+        background-color: @theme_fg_color;
+        color: @theme_base_color;
     }
 }
 
 #battery.warning:not(.charging) {
-    color: #ECEFF4;
+    color: @warning_color;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -77,8 +75,6 @@ window#waybar {
 }
 
 #clock {
-    background-color: @fg-color;
-    color: @bg-color;
 }
 
 #cpu {
@@ -91,7 +87,7 @@ window#waybar {
 }
 
 #network.disconnected {
-    background: #f53c3c;
+    background: @theme_error_color;
 }
 
 #pulseaudio {

@@ -30,11 +30,14 @@ alias yrm='yay -Rns'
 alias yfind='yay -F'
 
 ### Readability
-alias diff='colordiff'
+alias cat='bat -P'
+alias diff='kitty +kitten diff'
 alias df='df -h'
 alias du='du -h'
 alias dud='du -d 1 -h'
 alias ps='ps -F'
+alias ssh='kitty +kitten ssh'
+alias show='kitty +kitten icat'
 
 ### Safety
 alias chgrp='chgrp --preserve-root'
@@ -59,8 +62,6 @@ alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 alias wget='wget -c'
-
-### Typos
 alias Z='z'
 
 ### Work
