@@ -5,7 +5,6 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id "/usr/lib/geoclue-2.0/demos/agent"
 exec wl-paste -t text --watch clipman store --no-persist
 exec_always autotiling
-exec swayidle timeout 600 'lockscreen' timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'lockscreen'
 exec_always "systemctl --user restart kanshi.service"
 exec gammastep-indicator
 exec avizo-service
@@ -13,3 +12,10 @@ exec nm-applet --indicator
 exec_always blueman-applet
 exec rog-control-center
 exec albert
+exec swayidle -w -d\
+    timeout 300 'lockscreen' \
+    timeout 600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'playerctl -s pause || true && lockscreen'
+exec sway-audio-idle-inhibit
+

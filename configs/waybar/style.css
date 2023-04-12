@@ -44,10 +44,6 @@ window#waybar {
     padding: 2px 4px;
 }
 
-#clock {
-    font-weight: bold;
-}
-
 #battery {
 }
 
@@ -95,4 +91,3 @@ window#waybar {
 
 #pulseaudio.muted {
 }
-

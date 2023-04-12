@@ -1,5 +1,6 @@
 input "type:touchpad" {
   accel_profile adaptive
+  events disabled_on_external_mouse
   pointer_accel 0.0
   natural_scroll enabled
   scroll_factor 1.0

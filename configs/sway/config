@@ -63,7 +63,7 @@ bindsym $mod+n            exec swaync-client -t -sw
 # Exit menu
 set $exit "[l]ock [e]xit [s]leep [h]ibernate [r]eboot [p]oweroff"
 mode $exit {
-    bindsym l exec "swaymsg mode 'default' && lockscreen"
+    bindsym l exec "swaymsg mode 'default' && playerctl -s pause || true && lockscreen"
     bindsym e exec "swaymsg mode 'default' && swaymsg exit"
     bindsym s exec "swaymsg mode 'default' && systemctl -i suspend-then-hibernate"
     bindsym h exec "swaymsg mode 'default' && systemctl -i hibernate"
@@ -272,24 +272,24 @@ bindsym $mod+Control+Shift+minus gaps outer all     minus 5
 
 ###############    Application settings    ###############
 
+for_window [app_id="" title="Picture in picture"]         floating enable, sticky enable
+for_window [app_id="" title="Picture-in-Picture"]         floating enable, sticky enable
 for_window [app_id="(?i)(?:azote)"]                       floating enable
 for_window [app_id="(?i)(?:blueman-manager)"]             floating enable
-for_window [app_id="(?i)(?:pavucontrol)"]                 floating enable
-for_window [app_id="(?i)(?:nm-connection-editor)"]        floating enable
-for_window [app_id="(?i)(?:gsimplecal)"]                  floating enable
 for_window [app_id="(?i)(?:gnome-network-displays)"]      floating enable
+for_window [app_id="(?i)(?:gsimplecal)"]                  floating enable
+for_window [app_id="(?i)(?:nm-connection-editor)"]        floating enable
+for_window [app_id="(?i)(?:pavucontrol)"]                 floating enable
+for_window [app_id=".*"]                                 inhibit_idle fullscreen
+for_window [app_id="firefox" title="^Library$"]           floating enable, border pixel 1, sticky enable
+for_window [app_id="floating_shell"]                      floating enable, border pixel 1, sticky enable, resize set width 80 ppt height 70 ppt 
+for_window [app_id="floating_shell_small"]             floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 40 ppt
+for_window [class=".*"]                        inhibit_idle fullscreen
 for_window [title="(?i)(?:copying|deleting|moving)"]      floating enable
 for_window [title=".* is sharing a window."]              move scratchpad
 for_window [title=".* is sharing your screen."]           move scratchpad
-for_window [title="^wlay$"]                               floating enable
-for_window [class="firefox"]                              inhibit_idle fullscreen
-for_window [app_id="firefox" title="^Library$"]           floating enable, border pixel 1, sticky enable
 for_window [title="Firefox — Sharing Indicator"]          floating enable
-for_window [app_id="" title="Picture in picture"]         floating enable, sticky enable
-for_window [app_id="" title="Picture-in-Picture"]         floating enable, sticky enable
-for_window [app_id="floating_shell"]                      floating enable, border pixel 1, sticky enable, resize set width 80 ppt height 70 ppt 
-for_window [app_id="floating_shell_portrait"]             floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
-for_window [app_id="mpv"]                                 inhibit_idle fullscreen
 for_window [title="Save File"]                            floating enable
+for_window [title="^wlay$"]                               floating enable
 
 popup_during_fullscreen smart

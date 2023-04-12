@@ -1,136 +1,145 @@
-{
-  // Bar config
-  "layer": "top",
-  "position": "top",
-  "height": 24,
-  "spacing": 4,
-  "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-center": ["user", "clock", "custom/weather"],
-  "modules-right": ["idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "battery", "tray", "custom/notification"],
-  // Modules
-  // Left
-  "sway/workspaces": {
-    "all-outputs": false,
-    "format": "{name}",
-    "tooltip": false,
-    "on-click": "activate",
-    "on-click-right": "close"
-  },
-  "sway/mode": {
-    "format": "{}",
-    "tooltip": false
-  },
-  // Center
-  "user": {
-    "format": "{user} | {work_d}d {work_H}h {work_M}m |",
-    "interval": 60,
-  },
-  "clock": {
-    "interval": 60,
-    "format": "{:%H:%M %e %b %Y}",
-    "tooltip": true,
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "on-click": "swaymsg exec \\$calendar",
-  },
-  "custom/weather": {
-    "format": "{}",
-    "exec": "$HOME/.config/waybar/modules/weather.sh",
-    "exec-if": "ping 1.1.1.1 -c1",
-    "return-type": "json",
-    "interval": 220,
-    "tooltip": false
-  },
-  // Right
-  "idle_inhibitor": {
-    "format": "<span font='14'>{icon}</span>",
-    "format-icons": {
-      "activated": "",
-      "deactivated": ""
+[
+  // Landscape screen
+  {
+    // Bar config
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 4,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock", "custom/weather"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "battery", "tray", "custom/notification"],
+    // Modules
+    // Left
+    "sway/workspaces": {
+      "all-outputs": false,
+      "format": "{name}",
+      "tooltip": false,
+      "on-click": "activate",
+      "on-click-right": "close"
     },
-    "on-click-right": "playerctl stop || true && swaymsg -q mode \"default\" && swaymsg -q exec lockscreen",
-    "tooltip": false
-  },
-  "pulseaudio": {
-    "scroll-step": 1, // %, can be a float
-    "format": "{icon} {volume}% {format_source}",
-    "format-bluetooth": "{icon} {volume}%{format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": " {volume}%",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""]
+    "sway/mode": {
+      "format": "{}",
+      "tooltip": false
     },
-    "tooltip-format": "{icon} {volume}% {format_source}",
-    // "on-click": "pavucontrol"
-    "on-click": "swaymsg -q exec pavucontrol",
-    "on-scroll-up": "swaymsg -q exec 'volumectl -u up'",
-    "on-scroll-down": "swaymsg -q exec 'volumectl -u down'"
-  },
-  "cpu": {
-    "interval": 1,
-    "format": " {usage}%",
-    "max-length": 10,
-    "states": {
-      "warning": 70,
-      "critical": 90
+    // Center
+    "custom/agenda": {
+      "format": "{} |",
+      "exec": "nextmeeting --max-title-length 60 --gcalcli-cmdline='gcalcli agenda --config-folder=~/.config/gcalcli --nostarted --nodeclined --details=end --details=url --tsv today' --notify-min-before-events 30 --waybar",
+      "on-click": "nextmeeting --gcalcli-cmdline=\"gcalcli --config-folder=~/.config/gcalcli --nocolor agenda --nodeclined --details=end --details=url --tsv today\" --open-meet-url",
+      "on-click-right": "swaymsg -q exec '$term_float_small --hold gcalcli calw --config-folder=~/.config/gcalcli'",
+      "interval": 59,
+      "return-type": "json",
+      "tooltip": "true",
+      "tooltip-format": "{tooltip}"
     },
-    "on-click": "swaymsg -q exec \\$term_float gotop",
-    "tooltip": true
-  },
-  "memory": {
-    "interval": 1,
-    "format": " {}%",
-    "states": {
-      "warning": 70,
-      "critical": 90
+    "clock": {
+      "interval": 60,
+      "format": "{:%H:%M %e %b %Y}",
+      "tooltip": true,
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "on-click": "swaymsg exec \\$calendar",
     },
-    "on-click": "swaymsg -q exec \\$term_float htop",
-    "tooltip": true,
-    "tooltip-format": "{used:0.1f}GiB of {total:0.1f}GiB used"
-  },
-  "temperature": {
-    "thermal-zone": 0,
-    "input-filename": "temp",
-    "critical-threshold": 100,
-    "interval": 1,
-    "format-critical": " {temperatureC}°C",
-    "format": " {temperatureC}°C"
-  },
-  "battery": {
-    "full-at": 100,
-    "states": {
-      "warning": 20,
-      "critical": 10
+    "custom/weather": {
+      "format": "{}",
+      "exec": "$HOME/.config/waybar/modules/weather.sh",
+      "exec-if": "ping 1.1.1.1 -c1",
+      "return-type": "json",
+      "interval": 220,
+      "tooltip": false
     },
-    "format": "{icon} {capacity}%",
-    "format-time": "{H} hours and {M} minutes",
-    "format-charging": " {capacity}%",
-    "format-icons": ["", "", "", "", "", ""],
-    "tooltip": true
-  },
-  "tray": {
-    "icon-size": 16,
-    "spacing": 10
+    // Right
+    "idle_inhibitor": {
+      "format": "<span font='14'>{icon}</span>",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      },
+      "on-click-right": "playerctl -s pause || true && swaymsg -q mode \"default\" && swaymsg -q exec lockscreen",
+      "tooltip": false
     },
-  "custom/notification": {
-    "tooltip": false,
-    "format": "<span font='14'>{icon}</span>",
-    "format-icons": {
-      "notification": "<span foreground='red'><sup></sup></span>",
-      "none": "",
-      "dnd-notification": "<span foreground='red'><sup></sup></span>",
-      "dnd-none": ""
+    "pulseaudio": {
+      "scroll-step": 1, // %, can be a float
+      "format": "{icon} {volume}% {format_source}",
+      "format-bluetooth": "{icon} {volume}%{format_source}",
+      "format-bluetooth-muted": " {icon} {format_source}",
+      "format-muted": " {format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "tooltip-format": "{icon} {volume}% {format_source}",
+      // "on-click": "pavucontrol"
+      "on-click": "swaymsg -q exec pavucontrol",
+      "on-scroll-up": "swaymsg -q exec 'volumectl -u up'",
+      "on-scroll-down": "swaymsg -q exec 'volumectl -u down'"
     },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
+    "cpu": {
+      "interval": 1,
+      "format": " {usage}%",
+      "max-length": 10,
+      "states": {
+        "warning": 70,
+        "critical": 90
+      },
+      "on-click": "swaymsg -q exec \\$term_float gotop",
+      "tooltip": true
+    },
+    "memory": {
+      "interval": 1,
+      "format": " {}%",
+      "states": {
+        "warning": 70,
+        "critical": 90
+      },
+      "on-click": "swaymsg -q exec \\$term_float htop",
+      "tooltip": true,
+      "tooltip-format": "{used:0.1f}GiB of {total:0.1f}GiB used"
+    },
+    "temperature": {
+      "thermal-zone": 0,
+      "input-filename": "temp",
+      "critical-threshold": 100,
+      "interval": 1,
+      "format-critical": " {temperatureC}°C",
+      "format": " {temperatureC}°C"
+    },
+    "battery": {
+      "full-at": 100,
+      "states": {
+        "warning": 20,
+        "critical": 10
+      },
+      "format": "{icon} {capacity}%",
+      "format-time": "{H} hours and {M} minutes",
+      "format-charging": " {capacity}%",
+      "format-icons": ["", "", "", "", "", ""],
+      "tooltip": true
+    },
+    "tray": {
+      "icon-size": 16,
+      "spacing": 10
+      },
+    "custom/notification": {
+      "tooltip": false,
+      "format": "<span font='14'>{icon}</span>",
+      "format-icons": {
+        "notification": "<span foreground='red'><sup></sup></span>",
+        "none": "",
+        "dnd-notification": "<span foreground='red'><sup></sup></span>",
+        "dnd-none": ""
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
+    }
   }
-}
+]

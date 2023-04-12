@@ -9,4 +9,4 @@ do
 	convert -brightness-contrast -10x10 "/tmp/$OUTPUT.png" "/tmp/$OUTPUT.png" &
 done
 wait
-exec gtklock -s ~/.config/gtklock/style.css "$@"
+exec gtklock -d -s ~/.config/gtklock/style.css "$@"
