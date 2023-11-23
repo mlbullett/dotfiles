@@ -31,7 +31,7 @@ alias yfind='yay -F'
 
 ### Readability
 alias cat='bat -P'
-alias diff='kitty +kitten diff'
+alias d='kitty +kitten diff'
 alias df='df -h'
 alias du='du -h'
 alias dud='du -d 1 -h'
@@ -65,6 +65,3 @@ alias vim='nvim'
 alias wget='wget -c'
 alias Z='z'
 
-### Work
-alias daa='/home/max/work/DAA/tech/monorepo/daa/bin/daadocker'
-alias por='/home/max/work/DAA/tech/monorepo/portale/bin/portaldocker'

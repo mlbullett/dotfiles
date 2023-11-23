@@ -1,22 +1,22 @@
 profile laptop {
-	output eDP-2 enable mode 2560x1600 scale 1.33 position 0,0
+	output eDP-2 enable mode 2560x1600 scale 1.32 position 0,0
 }
 
 profile home {
 	output "Unknown PCT2235 0x00000101" enable mode 1920x1080 scale 1 position 0,0 transform 90
 	output "Dell Inc. DELL U2412M TK85K37B1VPL" enable mode 1920x1200 scale 1 position 1080,310
-	output eDP-2 enable mode 2560x1600 scale 1.62 position 3000,307
+	output eDP-2 enable mode 2560x1600 scale 1.32 position 3000,307
 }
 
 profile work {
 	output "LG Electronics LG ULTRAFINE 203NTHMD5489" enable mode 3840x2160 scale 1.33 position 0,0 transform 90
 	output "LG Electronics LG ULTRAFINE 203NTWGD5505" enable mode 3840x2160 scale 1.33 position 1626,666
-	output eDP-2 enable mode 2560x1600 scale 1.62 position 4517,1088
+	output eDP-2 enable mode 2560x1600 scale 1.32 position 4517,1088
 }
 
 profile workaround {
 	output "PLN PCT2235 0x00000101" enable mode 1920x1080 scale 1 position 0,0 transform 90
 	output "Dell Inc. DELL U2412M TK85K37B1VPL" enable mode 1920x1200 scale 1 position 1080,310
-	output eDP-2 enable mode 2560x1600 scale 1.62 position 3000,307
+	output eDP-2 enable mode 2560x1600 scale 1.32 position 3000,307
 
 }

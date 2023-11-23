@@ -25,9 +25,6 @@
     // Center
     "custom/agenda": {
       "format": "{} |",
-      "exec": "nextmeeting --max-title-length 60 --gcalcli-cmdline='gcalcli agenda --config-folder=~/.config/gcalcli --nostarted --nodeclined --details=end --details=url --tsv today' --notify-min-before-events 30 --waybar",
-      "on-click": "nextmeeting --gcalcli-cmdline=\"gcalcli --config-folder=~/.config/gcalcli --nocolor agenda --nodeclined --details=end --details=url --tsv today\" --open-meet-url",
-      "on-click-right": "swaymsg -q exec '$term_float_small --hold gcalcli calw --config-folder=~/.config/gcalcli'",
       "interval": 59,
       "return-type": "json",
       "tooltip": "true",

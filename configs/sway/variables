@@ -4,4 +4,4 @@ set $term_float_small kitty --class=\"floating_shell_small\"
 set $browser brave
 set $filemanager thunar
 set $editor mousepad
-set $launcher albert show
+set $launcher albert toggle

@@ -40,8 +40,8 @@ set $right semicolon
 
 # Turn off screen on lid closed
 set $laptop eDP-2
-bindswitch lid:on  output $laptop disable
-bindswitch lid:off output $laptop enable
+bindswitch --reload --locked lid:on  output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -291,5 +291,6 @@ for_window [title=".* is sharing your screen."]           move scratchpad
 for_window [title="Firefox — Sharing Indicator"]          floating enable
 for_window [title="Save File"]                            floating enable
 for_window [title="^wlay$"]                               floating enable
+for_window [title="Wine System Tray"]                     kill
 
 popup_during_fullscreen smart

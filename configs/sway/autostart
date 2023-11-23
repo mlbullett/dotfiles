@@ -1,21 +1,19 @@
-exec systemctl --user import-environment {,WAYLAND_}DISPLAY XAUTHORITY SWAYSOCK XDG_CURRENT_DESKTOP; systemctl --user start sway-session.target
+exec systemctl --user import-environment {,WAYLAND_}DISPLAY XAUTHORITY SWAYSOCK; systemctl --user start sway-session.target
 exec hash dbus-update-activation-environment 2>/dev/null && \
-    dbus-update-activation-environment --systemd DISPLAY XAUTHORITY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+    dbus-update-activation-environment --systemd DISPLAY XAUTHORITY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id "/usr/lib/geoclue-2.0/demos/agent"
 exec wl-paste -t text --watch clipman store --no-persist
 exec_always autotiling
 exec_always "systemctl --user restart kanshi.service"
-exec gammastep-indicator
 exec avizo-service
 exec nm-applet --indicator
 exec_always blueman-applet
 exec rog-control-center
-exec albert
+exec albert -q
 exec swayidle -w -d\
     timeout 300 'lockscreen' \
-    timeout 600 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
+    timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
     before-sleep 'playerctl -s pause || true && lockscreen'
 exec sway-audio-idle-inhibit
 

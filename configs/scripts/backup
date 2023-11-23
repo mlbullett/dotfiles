@@ -43,6 +43,10 @@ borg create                     \
     --exclude ~/work/daa/tech/monorepo \
     --exclude ~/work/daa/cloud \
     --exclude ~/.config/unity3d \
+    --exclude ~/.config/BraveSoftware \
+    --exclude ~/.config/heroic \
+    --exclude ~/.config/discord \
+    --exclude ~/videos/shows \
     2>&1
 
 backup_exit=$?
