@@ -3,22 +3,9 @@
           recursive: true
 
 - link:
-      ~/.config/hypr/hyprland.conf: configs/hypr/hyprland.conf
-      ~/.config/hypr/env.conf: configs/hypr/env.conf
-      ~/.config/hypr/inputs.conf: configs/hypr/inputs.conf
-      ~/.config/hypr/binds.conf: configs/hypr/binds.conf
-      ~/.config/hypr/gestures.conf: configs/hypr/gestures.conf
-      ~/.config/hypr/colors.conf: configs/hypr/colors.conf
-      ~/.config/hypr/general.conf: configs/hypr/general.conf
-      ~/.config/hypr/decoration.conf: configs/hypr/decoration.conf
-      ~/.config/hypr/animations.conf: configs/hypr/animations.conf
-      ~/.config/hypr/rules.conf: configs/hypr/rules.conf
-      ~/.config/hypr/groups.conf: configs/hypr/groups.conf
-      ~/.config/hypr/misc.conf: configs/hypr/misc.conf
-      ~/.config/hypr/debug.conf: configs/hypr/debug.conf
-      ~/.config/hypr/execs.conf: configs/hypr/execs.conf
-      ~/.config/hypr/plugins.conf: configs/hypr/plugins.conf
-      ~/.config/systemd/user/hyprland-session.target: configs/hypr/hyprland-session.target
+        ~/.config/hypr:
+              path: configs/hypr/*
+        ~/.config/systemd/user/hyprland-session.target: configs/hypr/hyprland-session.target
 
 - shell:
         - systemctl --user enable --now hyprland-session.target

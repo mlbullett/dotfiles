@@ -46,9 +46,9 @@ source $ZLIB/keybindings.zsh
 source $ZLIB/themes.zsh
 
 # Start sway
-if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec sway-run
-fi
+#if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+#  exec Hyprland
+#fi
 
 # SSH
 export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh

@@ -1,7 +1,0 @@
-set $term kitty
-set $term_float kitty --class=\"floating_shell\"
-set $term_float_small kitty --class=\"floating_shell_small\"
-set $browser brave
-set $filemanager thunar
-set $editor mousepad
-set $launcher albert toggle

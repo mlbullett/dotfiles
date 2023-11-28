@@ -1,0 +1,7 @@
+- clean:
+      ~/.config/bat:
+          recursive: true
+
+- link:
+      ~/.config/bat/config: configs/bat/config
+      ~/.config/bat/themes/Catppuccin-macchiato.tmTheme: configs/bat/themes/Catppuccin-macchiato.tmTheme

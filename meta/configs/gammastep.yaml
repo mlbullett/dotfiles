@@ -1,6 +1,0 @@
-- clean:
-      ~/.config/gammastep:
-          recursive: true
-
-- link:
-      ~/.config/gammastep/config.ini: configs/gammastep/config.ini

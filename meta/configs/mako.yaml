@@ -1,6 +1,0 @@
-- clean:
-      ~/.config/mako:
-          recursive: true
-
-- link:
-      ~/.config/mako/config: configs/mako/config

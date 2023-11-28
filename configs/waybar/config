@@ -6,19 +6,16 @@
     "position": "top",
     "height": 24,
     "spacing": 4,
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["clock", "custom/weather"],
     "modules-right": ["idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "battery", "tray", "custom/notification"],
     // Modules
     // Left
-    "sway/workspaces": {
+    "hyprland/workspaces": {
       "all-outputs": false,
-      "format": "{name}",
-      "tooltip": false,
-      "on-click": "activate",
-      "on-click-right": "close"
+      "format": "{name}"
     },
-    "sway/mode": {
+    "hyprland/submap": {
       "format": "{}",
       "tooltip": false
     },

@@ -4,7 +4,7 @@
 "
 
 " Theme
-let g:airline_theme='nord'
+let g:airline_theme = 'catppuccin'
 
 " No overwriting symbols if in existence
 if !exists('g:airline_symbols')
@@ -44,4 +44,4 @@ let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 
 let g:nord_uniform_status_lines = 0
-colorscheme nord                    " Load wpgtk theme
+colorscheme catppuccin-macchiato

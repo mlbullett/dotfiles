@@ -1,3 +1,34 @@
+@define-color base   #24273a;
+@define-color mantle #1e2030;
+@define-color crust  #181926;
+
+@define-color text     #cad3f5;
+@define-color subtext0 #a5adcb;
+@define-color subtext1 #b8c0e0;
+
+@define-color surface0 #363a4f;
+@define-color surface1 #494d64;
+@define-color surface2 #5b6078;
+
+@define-color overlay0 #6e738d;
+@define-color overlay1 #8087a2;
+@define-color overlay2 #939ab7;
+
+@define-color blue      #8aadf4;
+@define-color lavender  #b7bdf8;
+@define-color sapphire  #7dc4e4;
+@define-color sky       #91d7e3;
+@define-color teal      #8bd5ca;
+@define-color green     #a6da95;
+@define-color yellow    #eed49f;
+@define-color peach     #f5a97f;
+@define-color maroon    #ee99a0;
+@define-color red       #ed8796;
+@define-color mauve     #c6a0f6;
+@define-color pink      #f5bde6;
+@define-color flamingo  #f0c6c6;
+@define-color rosewater #f4dbd6;
+
 * {
     border: none;
     border-radius: 0;
@@ -7,8 +38,8 @@
 }
 
 window#waybar {
-    background: @headerbar_color;
-    color: @text_color;
+    background: shade(@base, 0.9);
+    color: @text;
 }
 
 #workspaces * {
@@ -20,8 +51,8 @@ window#waybar {
     border-bottom: 2px solid transparent;
 }
 
-#workspaces button.focused {
-    border-bottom: 2px solid @fg_color;
+#workspaces button.active {
+    border-bottom: 2px solid @mauve;
 }
 
 #workspaces button.visible {
@@ -36,8 +67,8 @@ window#waybar {
 
 }
 
-#mode {
-    border-bottom: 2px solid @theme_fg_color;
+#submap {
+    border-bottom: 2px solid @mauve;
 }
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #custom-notification, #idle_inhibitor {
@@ -48,7 +79,7 @@ window#waybar {
 }
 
 #battery icon {
-    color: @error_color;
+    color: @red;
 }
 
 #battery.charging {
@@ -56,13 +87,13 @@ window#waybar {
 
 @keyframes blink {
     to {
-        background-color: @theme_fg_color;
-        color: @theme_base_color;
+        background-color: @rosewater;
+        color: @base;
     }
 }
 
 #battery.warning:not(.charging) {
-    color: @warning_color;
+    color: @yellow;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -83,7 +114,7 @@ window#waybar {
 }
 
 #network.disconnected {
-    background: @theme_error_color;
+    background: @red;
 }
 
 #pulseaudio {
