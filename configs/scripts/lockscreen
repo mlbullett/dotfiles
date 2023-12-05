@@ -1,6 +1,6 @@
 #!/bin/sh
 
-OUTPUTS=$(swaymsg --type get_outputs --raw | jq --raw-output '.[] |select(.active) | .name')
+OUTPUTS=$(hyprctl -j monitors | jq --raw-output '.[] .name')
 
 for OUTPUT in $OUTPUTS
 do
@@ -9,4 +9,4 @@ do
 	convert -brightness-contrast -10x10 "/tmp/$OUTPUT.png" "/tmp/$OUTPUT.png" &
 done
 wait
-exec gtklock -d -s ~/.config/gtklock/style.css "$@"
+exec gtklock -di -s ~/.config/gtklock/style.css "$@"

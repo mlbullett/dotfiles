@@ -43,5 +43,11 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 
-let g:nord_uniform_status_lines = 0
+lua <<EOF
+require("catppuccin").setup({
+        flavour = "macchiato",
+        transparent_background = true,
+    })
+EOF
+
 colorscheme catppuccin-macchiato

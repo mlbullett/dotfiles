@@ -2,13 +2,44 @@
  * vim: ft=less 
  */
 
+@define-color base   #24273a;
+@define-color mantle #1e2030;
+@define-color crust  #181926;
+
+@define-color text     #cad3f5;
+@define-color subtext0 #a5adcb;
+@define-color subtext1 #b8c0e0;
+
+@define-color surface0 #363a4f;
+@define-color surface1 #494d64;
+@define-color surface2 #5b6078;
+
+@define-color overlay0 #6e738d;
+@define-color overlay1 #8087a2;
+@define-color overlay2 #939ab7;
+
+@define-color blue      #8aadf4;
+@define-color lavender  #b7bdf8;
+@define-color sapphire  #7dc4e4;
+@define-color sky       #91d7e3;
+@define-color teal      #8bd5ca;
+@define-color green     #a6da95;
+@define-color yellow    #eed49f;
+@define-color peach     #f5a97f;
+@define-color maroon    #ee99a0;
+@define-color red       #ed8796;
+@define-color mauve     #c6a0f6;
+@define-color pink      #f5bde6;
+@define-color flamingo  #f0c6c6;
+@define-color rosewater #f4dbd6;
+
 .notification-row {
   outline: none;
 }
 
 .notification-row:focus,
 .notification-row:hover {
-  background: @bg_color;
+  background: shade(@base, 0.9);
 }
 
 .notification {
@@ -21,20 +52,20 @@
 
 /* Uncomment to enable specific urgency colors
 .low {
-  background: yellow;
+  background: @yellow;
   padding: 6px;
   border-radius: 12px;
 }
 
 .normal {
-  background: green;
+  background: @green;
   padding: 6px;
   border-radius: 12px;
 }
 */
 
 .critical {
-  background: @error_color;
+  background: @red;
   padding: 6px;
   border-radius: 12px;
 }
@@ -46,8 +77,8 @@
 }
 
 .close-button {
-  background: @warning_color;
-  color: white;
+  background: @yellow;
+  color: @text;
   text-shadow: none;
   padding: 0;
   border-radius: 100%;
@@ -61,7 +92,7 @@
 
 .close-button:hover {
   box-shadow: none;
-  background: @error_color;
+  background: @red;
   transition: all 0.15s ease-in-out;
   border: none;
 }
@@ -71,16 +102,16 @@
   padding: 4px;
   margin: 0;
   box-shadow: none;
-  background: @bg_color;
-  border: 1px solid @border_color;
-  color: @text_color;
+  background: @base;
+  border: 1px solid @mauve;
+  color: @text;
 }
 
 .notification-default-action:hover,
 .notification-action:hover {
   -gtk-icon-effect: none;
-  background: @selected_bg_color;
-  color: @base_color;
+  background: @surface0;
+  color: @text;
 }
 
 .notification-default-action {
@@ -106,7 +137,7 @@
 
 .notification-action:last-child {
   border-bottom-right-radius: 10px;
-  border-right: 1px solid @border_color;
+  border-right: 1px solid @mauve;
 }
 
 .image {
@@ -114,59 +145,59 @@
 
 .body-image {
   margin-top: 6px;
-  background-color: white;
+  background-color: @text;
   border-radius: 12px;
 }
 
 .summary {
-  color: white;
+  color: @text;
   text-shadow: none;
 }
 
 .time {
-  color: white;
+  color: @text;
   text-shadow: none;
   margin-right: 18px;
 }
 
 .body {
   background: transparent;
-  color: white;
+  color: @text;
   text-shadow: none;
 }
 
 /* The "Notifications" and "Do Not Disturb" text widget */
 .top-action-title {
-  color: white;
+  color: @text;
   text-shadow: none;
 }
 
 .control-center-clear-all {
-  color: white;
+  color: @text;
   text-shadow: none;
-  background: @base_color;
-  border: 1px solid @theme_base_color;
+  background: @base;
+  border: 1px solid @mauve;
   box-shadow: none;
   border-radius: 12px;
 }
 
 .control-center-clear-all:hover {
-  background: @theme_bg_color-hover;
+  background: @surface0;
 }
 
 .control-center-dnd {
   border-radius: 12px;
-  background: @theme_bg_color;
-  border: 1px solid @theme_border_color;
+  background: @base;
+  border: 1px solid @mauve;
   box-shadow: none;
 }
 
 .control-center-dnd:checked {
-  background: @selected_bg_color;
+  background: @base;
 }
 
 .control-center-dnd slider {
-  background: @fg_color;
+  background: @mauve;
   border-radius: 12px;
 }
 
@@ -174,7 +205,7 @@
  * Can't apply padding and margin so may be easier to use "> box" instead
  */
 .control-center {
-  background: @base_color;
+  background: @base;
 }
 
 /* The first control-center child. May be easier to style this than .control-center */
@@ -191,5 +222,5 @@
 
 /* Window behind control center and on all other monitors */
 .blank-window {
-  background: alpha(black, 0.25);
+  background: alpha(@crust, 0.25);
 }

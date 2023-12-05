@@ -29,7 +29,7 @@ wallpaperPath="$HOME/pictures/wallpapers/Lakeside"
 
 # Set how you want your wallpaper displayed
 # stretch | center | tile | scale | zoom | fill
-wallpaperMode="center"
+wallpaperMode="fill"
 
 # Sunpaper writes some cache files to keep track of 
 # persistent variables.

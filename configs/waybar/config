@@ -13,7 +13,9 @@
     // Left
     "hyprland/workspaces": {
       "all-outputs": false,
-      "format": "{name}"
+      "format": "{name}",
+      "on-scroll-up": "hyprctl dispatch workspace e+1",
+      "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
     "hyprland/submap": {
       "format": "{}",
@@ -32,7 +34,7 @@
       "format": "{:%H:%M %e %b %Y}",
       "tooltip": true,
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-      "on-click": "swaymsg exec \\$calendar",
+      "on-click": "hyprctl dispatch exec \\$calendar",
     },
     "custom/weather": {
       "format": "{}",
@@ -49,7 +51,7 @@
         "activated": "",
         "deactivated": ""
       },
-      "on-click-right": "playerctl -s pause || true && swaymsg -q mode \"default\" && swaymsg -q exec lockscreen",
+      "on-click-right": "playerctl -s pause || true && hyprctl dispatch submap reset && hyprctl dispatch exec lockscreen",
       "tooltip": false
     },
     "pulseaudio": {
@@ -69,9 +71,9 @@
       },
       "tooltip-format": "{icon} {volume}% {format_source}",
       // "on-click": "pavucontrol"
-      "on-click": "swaymsg -q exec pavucontrol",
-      "on-scroll-up": "swaymsg -q exec 'volumectl -u up'",
-      "on-scroll-down": "swaymsg -q exec 'volumectl -u down'"
+      "on-click": "hyprctl dispatch exec pavucontrol",
+      "on-scroll-up": "hyprctl dispatch exec 'volumectl -u up'",
+      "on-scroll-down": "hyprctl dispatch exec 'volumectl -u down'"
     },
     "cpu": {
       "interval": 1,
@@ -81,7 +83,7 @@
         "warning": 70,
         "critical": 90
       },
-      "on-click": "swaymsg -q exec \\$term_float gotop",
+      "on-click": "hyprctl dispatch exec \"kitty --class='floating_shell' gotop\"",
       "tooltip": true
     },
     "memory": {
@@ -91,7 +93,7 @@
         "warning": 70,
         "critical": 90
       },
-      "on-click": "swaymsg -q exec \\$term_float htop",
+      "on-click": "hyprctl dispatch exec \"kitty --class='floating_shell' htop\"",
       "tooltip": true,
       "tooltip-format": "{used:0.1f}GiB of {total:0.1f}GiB used"
     },
