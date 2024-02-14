@@ -1,0 +1,4 @@
+timeout 10 'if pgrep -x gtklock; then hyprctl dispatch dpms off; swaync-client -Ia "timeout"; fi' resume 'hyprctl dispatch dpms on; swaync-client -Ir "timeout"'
+timeout 300 'lockscreen'
+timeout 330 'hyprctl dispatch dpms off; swaync-client -Ia "timeout"' resume 'hyprctl dispatch dpms on; swaync-client -Ir "timeout"'
+before-sleep 'lockscreen'

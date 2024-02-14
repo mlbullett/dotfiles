@@ -18,4 +18,4 @@ fi
 TEMP=$(printf "%.0f" "$(jq -r .main.feels_like $CACHE)")
 SUMMARY=$(jq -r .weather[0].description $CACHE)
 
-echo -e "{\"text\":\"| $TEMP°C $SUMMARY\"}"
+echo -e "{\"text\":\"$TEMP°C $SUMMARY\"}"

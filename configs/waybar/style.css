@@ -29,71 +29,97 @@
 @define-color flamingo  #f0c6c6;
 @define-color rosewater #f4dbd6;
 
+
+@keyframes blink {
+    to {
+        background-color: @base;
+        color: @text;
+    }
+}
+
 * {
     border: none;
     border-radius: 0;
     font-family: CaskaydiaCove Nerd Font Mono Light, monospace;
     font-size: 14px;
-    min-height: 0;
 }
 
 window#waybar {
-    background: shade(@base, 0.9);
-    color: @text;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
 }
 
-#workspaces * {
-    padding: 0 4px;
-    background: transparent;
+window#waybar.hidden {
+    opacity: 0.5;
+}
+
+#workspaces {
+    background-color: transparent;
 }
 
 #workspaces button {
-    border-bottom: 2px solid transparent;
+    all: initial; /* Remove GTK theme values (waybar #1351) */
+    min-width: 0; /* Fix weird spacing in materia (waybar #450) */
+    box-shadow: inset 0 -3px transparent; /* Use box-shadow instead of border so the text isn't offset */
+    padding: 6px 12px;
+    margin: 6px 3px;
+    border-radius: 8px;
+    color: @text;
+    background: @base;
+    transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.active {
-    border-bottom: 2px solid @mauve;
+    background-color: @mauve;
+    color: @base;
+    transition: all 0.3s ease-in-out;
 }
 
-#workspaces button.visible {
-
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background-color: @rosewater;
+    color: @base;
 }
 
 #workspaces button.urgent {
-
+    background-color: @red;
 }
 
-#workspaces button.hidden {
+#submap, #clock, #custom-weather, #pulseaudio, #cpu, #memory, #temperature, #battery, #tray, #idle_inhibitor, #custom-notification {
+    border-radius: 8px;
+    margin: 6px 3px;
+    padding: 6px 12px;
+    color: @base;
+}
 
+#clock, #custom-weather {
+    background-color: @mauve;
 }
 
 #submap {
-    border-bottom: 2px solid @mauve;
+    background-color: @rosewater;
 }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #custom-notification, #idle_inhibitor {
-    padding: 2px 4px;
+#pulseaudio {
+    background-color: @flamingo;
 }
 
-#battery {
+#cpu {
+    background-color: @yellow;
 }
 
-#battery icon {
-    color: @red;
+#cpu.warning {
+    background-color: @peach;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 4;
+    animation-direction: alternate;
 }
 
-#battery.charging {
-}
-
-@keyframes blink {
-    to {
-        background-color: @rosewater;
-        color: @base;
-    }
-}
-
-#battery.warning:not(.charging) {
-    color: @yellow;
+#cpu.critical {
+    background-color: @red;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -101,24 +127,89 @@ window#waybar {
     animation-direction: alternate;
 }
 
-#clock {
-}
-
-#cpu {
-}
-
 #memory {
+    background-color: @green;
 }
 
-#network {
+#memory.warning {
+    background-color: @peach;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 4;
+    animation-direction: alternate;
 }
 
-#network.disconnected {
-    background: @red;
+#memory.critical {
+    background-color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
-#pulseaudio {
+#temperature {
+    background-color: @teal;
+}
+#temperature.critical {
+    background-color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
-#pulseaudio.muted {
+#battery {
+    background-color: @blue;
+}
+
+#battery.charging {
+    background-color: @sapphire;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 4;
+    animation-direction: alternate;
+}
+
+#battery.warning {
+    background-color: @peach;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 4;
+    animation-direction: alternate;
+}
+
+#battery.critical {
+    background-color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#tray {
+    background-color: @base;
+}
+
+#idle_inhibitor {
+    background-color: @pink;
+}
+
+#idle_inhibitor.deactivated {
+    background-color: @base;
+    color: @text;
+}
+
+#custom-notification {
+    background-color: @mauve;
+}
+
+#custom-notification.dnd-none, #custom-notification.dnd-notification {
+    background-color: @base;
+    color: @text;
 }

@@ -15,14 +15,14 @@ alias history="history -i"
 alias h='history'
 
 ### Listing
-alias l='exa --git -lFh'
+alias l='exa --git -lh -F auto'
 alias L="less"
-alias la='exa --git -lFha'
-alias lat='exa --git -lFhaT'
+alias la='exa --git -lha -F auto'
+alias lat='exa --git -lhaT -F auto'
 alias lh='exa --git -ld .*'
 alias ln='ln -i'
-alias ls='exa --git -F'
-alias lt='exa --git -lFhT'
+alias ls='exa --git -F auto'
+alias lt='exa --git -lhT -F auto'
 
 ### Package management & Updates
 alias yup='yay -Syu'

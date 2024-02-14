@@ -4,16 +4,29 @@
     // Bar config
     "layer": "top",
     "position": "top",
-    "height": 24,
-    "spacing": 4,
+    "height": 30,
     "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["clock", "custom/weather"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "battery", "tray", "custom/notification"],
+    "modules-right": ["tray", "pulseaudio", "cpu", "memory", "temperature", "battery", "idle_inhibitor", "custom/notification"],
+    "margin": 0,
+    "spacing": 4,
+    //"mode": "dock",
+    "start_hidden": false,
+    "modifier-reset": "press",
+    "exclusive": true,
+    "fixed-center": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "ipc": false,
     // Modules
-    // Left
     "hyprland/workspaces": {
+      "active-only": false,
       "all-outputs": false,
+      "disable-scroll": false,
+      "show-special": false,
+      "sort-by": "number",
       "format": "{name}",
+      "on-click": "activate",
       "on-scroll-up": "hyprctl dispatch workspace e+1",
       "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
@@ -21,17 +34,9 @@
       "format": "{}",
       "tooltip": false
     },
-    // Center
-    "custom/agenda": {
-      "format": "{} |",
-      "interval": 59,
-      "return-type": "json",
-      "tooltip": "true",
-      "tooltip-format": "{tooltip}"
-    },
     "clock": {
       "interval": 60,
-      "format": "{:%H:%M %e %b %Y}",
+      "format": " {:%a, %d %b, %H:%M %p}",
       "tooltip": true,
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "on-click": "hyprctl dispatch exec \\$calendar",
@@ -44,9 +49,8 @@
       "interval": 220,
       "tooltip": false
     },
-    // Right
     "idle_inhibitor": {
-      "format": "<span font='14'>{icon}</span>",
+      "format": "<span>{icon}</span>",
       "format-icons": {
         "activated": "",
         "deactivated": ""
@@ -100,7 +104,7 @@
     "temperature": {
       "thermal-zone": 0,
       "input-filename": "temp",
-      "critical-threshold": 100,
+      "critical-threshold": 90,
       "interval": 1,
       "format-critical": " {temperatureC}°C",
       "format": " {temperatureC}°C"
@@ -119,23 +123,28 @@
     },
     "tray": {
       "icon-size": 16,
-      "spacing": 10
+      "spacing": 12
       },
     "custom/notification": {
       "tooltip": false,
-      "format": "<span font='14'>{icon}</span>",
+      "format": "<span>{icon}</span>",
       "format-icons": {
         "notification": "<span foreground='red'><sup></sup></span>",
         "none": "",
         "dnd-notification": "<span foreground='red'><sup></sup></span>",
-        "dnd-none": ""
+        "dnd-none": "",
+        "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+        "inhibited-none": "",
+        "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+        "dnd-inhibited-none": ""
       },
       "return-type": "json",
       "exec-if": "which swaync-client",
       "exec": "swaync-client -swb",
       "on-click": "swaync-client -t -sw",
       "on-click-right": "swaync-client -d -sw",
-      "escape": true
+      "escape": true,
+      "max-length": 4
     }
   }
 ]
