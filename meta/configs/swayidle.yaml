@@ -1,7 +1,0 @@
-- clean:
-      ~/.config/swayidle:
-          recursive: true
-
-- link:
-        ~/.config/swayidle:
-              path: configs/swayidle/*

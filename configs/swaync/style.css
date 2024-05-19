@@ -110,8 +110,8 @@
 
 .notification-row .notification-background .notification .notification-default-action:not(:only-child) {
   /* When alternative actions are visible */
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content {
@@ -137,7 +137,7 @@
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
   /* Notification summary/title */
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   background: transparent;
   color: @text;
@@ -163,7 +163,7 @@
   text-shadow: none;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content progressbar {
+.notification-row .notification-background .notification .notification-default-action .notification-content .progressbar {
   /* The optional notification progress bar */
   margin-top: 4px;
 }
@@ -200,8 +200,7 @@
 .notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-button:disabled {
   background: initial;
   color: @subtext0;
-  border: 2px solid @mauve;
-  border-color: transparent;
+  border: 2px solid transparent;
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-button:hover {
@@ -211,7 +210,7 @@
 .notification-row .notification-background .notification .notification-action {
   /* The alternative actions below the default action */
   border-top: 1px solid @mauve;
-  border-radius: 0px;
+  border-radius: 0;
   border-right: 1px solid @mauve;
 }
 
@@ -329,7 +328,7 @@
 .widget-title {
   color: @text;
   margin: 8px;
-  font-size: 1.5rem;
+  font-size: 14px;
 }
 
 .widget-title > button {
@@ -350,7 +349,7 @@
 .widget-dnd {
   color: @text;
   margin: 8px;
-  font-size: 1.1rem;
+  font-size: 14px;
 }
 
 .widget-dnd > switch {
@@ -362,12 +361,16 @@
 }
 
 .widget-dnd > switch:checked {
-  background: @surface0;
+  background: @mauve;
 }
 
 .widget-dnd > switch slider {
-  background: @overlay0;
-  border-radius: 8px;
+  background: @mauve;
+  border-radius: 100%;
+}
+
+.widget-dnd > switch:checked slider {
+  background: @base;
 }
 
 /* Label widget */
@@ -376,7 +379,7 @@
 }
 
 .widget-label > label {
-  font-size: 1.1rem;
+  font-size: 14px;
 }
 
 /* Mpris widget */
@@ -385,12 +388,11 @@
 }
 
 .widget-mpris .widget-mpris-player {
-  padding: 8px;
   padding: 16px;
   margin: 16px 20px;
   background-color: rgba(0, 0, 0, 0.55);
   border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
 }
 
 .widget-mpris .widget-mpris-player button:hover {
@@ -400,16 +402,16 @@
 
 .widget-mpris .widget-mpris-player .widget-mpris-album-art {
   border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
 }
 
 .widget-mpris .widget-mpris-player .widget-mpris-title {
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 14px;
 }
 
 .widget-mpris .widget-mpris-player .widget-mpris-subtitle {
-  font-size: 1.1rem;
+  font-size: 14px;
 }
 
 .widget-mpris .widget-mpris-player > box > button {
@@ -488,7 +490,7 @@
 .per-app-volume {
   background-color: @base;
   padding: 4px 8px 8px 8px;
-  margin: 0px 8px 8px 8px;
+  margin: 0 8px 8px 8px;
   border-radius: 8px;
 }
 
@@ -503,7 +505,7 @@
 /* Inhibitors widget */
 .widget-inhibitors {
   margin: 8px;
-  font-size: 1.5rem;
+  font-size: 14px;
 }
 
 .widget-inhibitors > button {

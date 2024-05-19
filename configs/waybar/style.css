@@ -62,7 +62,7 @@ window#waybar.hidden {
     min-width: 0; /* Fix weird spacing in materia (waybar #450) */
     box-shadow: inset 0 -3px transparent; /* Use box-shadow instead of border so the text isn't offset */
     padding: 6px 12px;
-    margin: 6px 3px;
+    margin: 6px 4px;
     border-radius: 8px;
     color: @text;
     background: @base;
@@ -86,15 +86,27 @@ window#waybar.hidden {
     background-color: @red;
 }
 
-#submap, #clock, #custom-weather, #pulseaudio, #cpu, #memory, #temperature, #battery, #tray, #idle_inhibitor, #custom-notification {
-    border-radius: 8px;
-    margin: 6px 3px;
+#clock, #custom-weather {
+    background-color: @mauve;
     padding: 6px 12px;
     color: @base;
 }
 
-#clock, #custom-weather {
-    background-color: @mauve;
+#clock {
+    border-radius: 8px;
+    margin: 6px 0 6px 4px;
+}
+
+#custom-weather {
+    border-radius: 0 8px 8px 0;
+    margin: 6px 4px 6px -8px;
+}
+
+#submap, #pulseaudio, #cpu, #memory, #temperature, #battery, #tray, #idle_inhibitor, #custom-notification {
+    border-radius: 8px;
+    margin: 6px 4px;
+    padding: 6px 12px;
+    color: @base;
 }
 
 #submap {

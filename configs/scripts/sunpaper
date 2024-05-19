@@ -29,7 +29,7 @@ wallpaperPath="$HOME/pictures/wallpapers/Lakeside"
 
 # Set how you want your wallpaper displayed
 # stretch | center | tile | scale | zoom | fill
-wallpaperMode="fill"
+wallpaperMode="scale"
 
 # Sunpaper writes some cache files to keep track of 
 # persistent variables.
@@ -674,7 +674,7 @@ exec_swww(){
         true
 
     else
-        nohup swww init > /dev/null 2>&1 &
+        nohup swww-daemon > /dev/null 2>&1 &
 
     fi
 }
