@@ -2,7 +2,7 @@
   // Landscape screen
   {
     // Bar config
-    "layer": "top",
+    "layer": "bottom",
     "position": "top",
     "height": 32,
     "modules-left": ["hyprland/workspaces", "hyprland/submap"],
@@ -10,7 +10,7 @@
     "modules-right": ["tray", "pulseaudio", "cpu", "memory", "temperature", "battery", "idle_inhibitor", "custom/notification"],
     "margin": 0,
     "spacing": 0,
-    //"mode": "dock",
+    "mode": "dock",
     "start_hidden": false,
     "modifier-reset": "press",
     "exclusive": true,

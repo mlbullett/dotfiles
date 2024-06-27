@@ -19,7 +19,7 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZLIB=$ZDOTDIR/lib
 
 ### Defaults
-export BROWSER=/usr/bin/brave
+export BROWSER=/usr/bin/firefox
 export DIFF='/usr/bin/nvim -d'
 export EDITOR=/usr/bin/nvim
 export GAMEMODERUNEXEC="env DRI_PRIME=1"

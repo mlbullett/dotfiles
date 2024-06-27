@@ -45,7 +45,7 @@ source $ZLIB/history.zsh
 source $ZLIB/keybindings.zsh
 source $ZLIB/themes.zsh
 
-# Start sway
+# Start Hyprland
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
     cd ~
     export _JAVA_AWT_WM_NONREPARENTING=1
