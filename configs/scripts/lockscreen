@@ -9,9 +9,10 @@ OUTPUTS=$(hyprctl -j monitors | jq --raw-output '.[] .name')
 
 for OUTPUT in $OUTPUTS
 do
-	grim -o "$OUTPUT" "/tmp/$OUTPUT.png"
-	corrupter -mag 4 "/tmp/$OUTPUT.png" "/tmp/$OUTPUT.png"
-	convert -brightness-contrast -10x10 "/tmp/$OUTPUT.png" "/tmp/$OUTPUT.png" &
+	grim -o "$OUTPUT" "/tmp/$OUTPUT.png" &&
+	corrupter -mag 4 "/tmp/$OUTPUT.png" "/tmp/$OUTPUT.png" &&
+	magick "/tmp/$OUTPUT.png" -brightness-contrast -10X10 "/tmp/$OUTPUT.png"
 done
 wait
-exec gtklock -d -s ~/.config/gtklock/style.css --monitor-priority 1 "$@"
+swaync-client -Ia "locked";
+exec gtklock -d -s ~/.config/gtklock/style.css -U "swaync-client -Ir \"locked\"" --monitor-priority 1 "$@"

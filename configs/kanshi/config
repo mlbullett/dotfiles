@@ -10,7 +10,7 @@ profile home {
 
 profile work {
 	output "LG Electronics LG ULTRAFINE 203NTHMD5489" enable mode 3840x2160 scale 1.333333 position 0,0 transform 90
-	output "LG Electronics LG ULTRAFINE 203NTWGD5505" enable mode 3840x2160 scale 1.333333 position 1620,732
+	output "LG Electronics LG ULTRAFINE 204NTXRFG730" enable mode 3840x2160 scale 1.333333 position 1620,732
 	output eDP-2 enable mode 2560x1600 scale 1.333333 position 4500,1152
 }
 

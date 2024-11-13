@@ -59,3 +59,6 @@ path=($XDG_BIN_HOME $XDG_BIN_HOME/private $CARGO_HOME/bin $NPM_PACKAGES/bin $GEM
 
 ### NVM
 source /usr/share/nvm/init-nvm.sh
+
+### Python
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
